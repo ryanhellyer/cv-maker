@@ -71,16 +71,140 @@ const addFirstLastProperties = (obj) => {
  * @param {Object} obj - The object containing date fields to be converted.
  */
 const convertDates = (obj, format) => {
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            if (typeof obj[key] === 'object') {
-                convertDates(obj[key], format);
-            } 
+	for (const key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			if (typeof obj[key] === 'object') {
+				convertDates(obj[key], format);
+			} 
 
-            // If the property is 'start' or 'date', format the timestamp.
-            else if (key === 'start' || key === 'end') {
-                obj[key] = convertTime(obj[key], format);
-            }
-        }
-    }
+			// If the property is 'start' or 'date', format the timestamp.
+			else if (key === 'start' || key === 'end') {
+				obj[key] = convertTime(obj[key], format);
+			}
+		}
+	}
+};
+
+/**
+ * Unescapes common HTML typographic elements and entities in a string.
+ *
+ * This function takes a string containing HTML escaped characters and
+ * converts them back to their unescaped form for typical HTML elements
+ * such as paragraphs, headings, and other typographic elements. It also
+ * handles common HTML entities like &, ", ', /, and &nbsp;.
+ *
+ * @param {string} str - The string containing HTML escaped characters.
+ * @return {string} - The unescaped string with HTML elements and entities.
+ *
+ * @example
+ * const escapedHTML = "Hello &lt;p&gt;This is a paragraph.&lt;/p&gt; &amp; &quot; &apos; &#x2F; &nbsp;";
+ * const unescapedHTML = unescapeHTMLElements(escapedHTML);
+ * console.log(unescapedHTML);  // Output: Hello <p>This is a paragraph.</p> & " ' /  
+ */
+const unescapeHTMLElements = (str) => {
+  const tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'span', 'br', 'hr', 'div'];
+  let entities = {
+	'&amp;': '&',
+	'&lt;': '<',
+	'&gt;': '>',
+	'&quot;': '"',
+	'&#39;': "'",
+	'&#x2F;': '/',
+	'&nbsp;': ' ',
+  };
+
+  tags.forEach(tag => {
+	entities[`&lt;${tag}&gt;`] = `<${tag}>`;
+	entities[`&lt;/${tag}&gt;`] = `</${tag}>`;
+  });
+
+  const regex = new RegExp(Object.keys(entities).join('|'), 'g');
+  
+  return str.replace(regex, match => entities[match]);
+};
+
+/**
+ * Extracts the content of the .main section from the initial template and removes it,
+ * returning the updated template and the content of the .main section.
+ *
+ * @param {string} initialTemplate - The initial HTML template as a string.
+ * @returns {Object} An object containing the updated template without the .main section
+ *                   and the content of the .main section.
+ *                   { updatedTemplate: string, contentTemplate: string }
+ */
+const getTemplateSections = (initialTemplate) => {
+	let container = document.createElement('div');
+	container.innerHTML = initialTemplate;
+
+	let mainSection = container.querySelector('.main');
+	const contentTemplate = mainSection.innerHTML;
+
+	mainSection.innerHTML = '';
+
+	const updatedTemplate = container.innerHTML;
+
+	return { updatedTemplate, contentTemplate };
+};
+
+const splitContentSections = (htmlString) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlString, 'text/html');
+
+  const result = [];
+  const headings = doc.querySelectorAll('h2');
+
+  headings.forEach(heading => {
+	let content = `<h2>${heading.textContent.trim()}</h2>`;
+
+	let nextElement = heading.nextElementSibling;
+	while (nextElement && nextElement.tagName !== 'H2') {
+	  content += nextElement.outerHTML;
+	  nextElement = nextElement.nextElementSibling;
+	}
+
+	result.push(content.trim());
+  });
+
+  return result;
+};
+
+const replaceContentBetweenStrings = (htmlString, startString, endString) => {
+	// Create a new DOM parser
+	const parser = new DOMParser();
+	// Parse the string into a document
+	const doc = parser.parseFromString(htmlString, 'text/html');
+
+	// Find the start and end positions of the strings
+	const startIndex = htmlString.indexOf(startString);
+	const endIndex = htmlString.indexOf(endString, startIndex + startString.length);
+
+	if (startIndex !== -1 && endIndex !== -1) {
+		// Remove content between the two strings
+		const beforeContent = htmlString.slice(0, startIndex + startString.length);
+		const afterContent = htmlString.slice(endIndex);
+		return beforeContent + afterContent;
+	}
+
+	// If either string is not found, return the original HTML string
+	return htmlString;
+};
+
+const extractContentBetweenStrings = (htmlString, startString, endString) => {
+	// Create a new DOM parser
+	const parser = new DOMParser();
+	// Parse the string into a document
+	const doc = parser.parseFromString(htmlString, 'text/html');
+	
+	// Find the start and end positions of the strings
+	const startIndex = htmlString.indexOf(startString);
+	const endIndex = htmlString.indexOf(endString, startIndex + startString.length);
+	
+	if (startIndex !== -1 && endIndex !== -1) {
+		// Extract content between the two strings
+		const content = htmlString.slice(startIndex + startString.length, endIndex);
+		return content;
+	}
+	
+	// If either string is not found, return an empty string
+	return '';
 };
