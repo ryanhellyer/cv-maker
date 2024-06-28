@@ -1,7 +1,7 @@
 const loadCV = async () => {
 	try {
 		// Get CV.
-		const responseJSON = await fetch('cv.json');
+		const responseJSON = await fetch('scripts/cv.json');
 		if (!responseJSON.ok) {
 			throw new Error(`HTTP error! status: ${responseJSON.status}`);
 		}
