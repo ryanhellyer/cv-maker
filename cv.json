@@ -1,0 +1,106 @@
+{
+	"name": {
+		"full": "Liubov Kurilova"
+	},
+	"tagLine": "Delivering quality service with a smile",
+	"blurb": "<p>Adaptable professional with diverse experience in customer service and archival management. Skilled at enhancing operational efficiency and exceeding performance goals. Bilingual in English and Russian.</p>",
+	"contact": {
+		"email": "liuba.eremenko@gmail.com",
+		"phone": "+49 1522 464 0561",
+		"instagram": "kurilove_art"
+	},
+	"jobs": [
+		{
+			"title": "Client Services Specialist",
+			"company": "Concentrix Global Services GmbH",
+			"start": 1609459200,
+			"end": 1712121600,
+			"tasks": [
+				"I worked hard to establish a friendly and solution-focused environment by providing top-notch support (via chat, email, and phone calls) for advertisers on a major global social media platform.",
+				"I acted as the go-to person between the company and our clients, sorting out any issues they had and ensuring they were always satisfied with our services.",
+				"Being adaptable and skilled, I kept myself in the loop with the latest happenings in the industry, learning about new trends, tools, and best ways of doing things.",
+				"I came up with ideas that made us work more efficiently, boosted the way our customers felt about us, and painted a positive picture of our brand.",
+				"I consistently outperformed my targets, earning praise for my excellent customer service skills and making a significant contribution to the success of our team."
+			]
+		},
+		{
+			"title": "Digital Artist",
+			"company": "Self employed",
+			"start": 1483228800,
+			"end": 1609459200,
+			"tasks": [
+				"Cultivated an active Instagram following of 7,000+ through regular creation and sharing of original digital artwork.",
+				"Capitalized on social media platform by fulfilling follower requests and commissions.",
+				"Demonstrated strong customer engagement and project management skills."
+			]
+		},
+		{
+			"title": "Administrative Assistant",
+			"company": "AO Business News Media",
+			"start": 1451606400,
+			"end": 1483228800,
+			"tasks": [
+				"Managed day-to-day office operations in a fast-paced newsroom, handling diverse documentation and administrative duties.",
+				"Collaborated effectively with multiple departments, including accounting, design, marketing, conferences and editorial.",
+				"Carried out transcription services with precision and timeliness, enhancing office productivity."
+			]
+		},
+		{
+			"title": "Temporary Secretary",
+			"company": "Coleman Services",
+			"start": 1420070400,
+			"end": 1451606400,
+			"tasks": [
+				"Supported various companies with operational and project tasks.",
+				"Managed administrative duties for smooth business operations."
+			]
+		},
+		{
+			"title": "Customer Support Professional",
+			"company": "BKC-International House",
+			"start": 1420070400,
+			"end": 1451606400,
+			"tasks": [
+				"Led educational sales and supported language learners."
+			]
+		},
+		{
+			"title": "Sales Professional",
+			"company": "Mexx, BNS Group",
+			"start": 1388534400,
+			"end": 1420070400,
+			"tasks": [
+				"Managed sales, provided customer service, and recommended products.",
+				"Achieved sales targets and assisted customers with fashion choices."
+			]
+		},
+		{
+			"title": "Assistant Archivist",
+			"company": "Russian State Archive, OPJS Telegraph",
+			"start": 1388534400,
+			"end": 1420070400,
+			"tasks": [
+				"Managed, digitized, and organized corporate and state archive documents."
+			]
+		}
+	],
+	"languages": [
+		{
+			"language": "Russian",
+			"fluency": "native"
+		},
+		{
+			"language": "English",
+			"fluency": "full-professional"
+		}
+	],
+	"education": [
+		{
+			"institution": "Russian State University for the Humanities",
+			"start": "1293836400",
+			"end": "1451602799",
+			"subject": "Documentation and Archival Studies",
+			"thesis": "International Business and Technical Archives."
+		}
+	]
+}
