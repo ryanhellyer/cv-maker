@@ -208,3 +208,8 @@ const extractContentBetweenStrings = (htmlString, startString, endString) => {
 	// If either string is not found, return an empty string
 	return '';
 };
+
+function hasOverflow(element) {
+	//console.log('element.scrollHeight: ' + element.scrollHeight, ', element.clientHeight: ' + element.clientHeight);
+    return element.scrollHeight > element.clientHeight;
+}
