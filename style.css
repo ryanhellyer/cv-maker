@@ -91,49 +91,57 @@ header {
 	height: 6cm;
 	background: #333;
 	text-align: center;
+
+	h1 {
+		display: inline-block;
+		margin: 1.3cm 0 0;
+		padding: 0.5cm;
+		font-family: open-sans-regular,sans-serif;
+		font-size: 1.1cm;
+		letter-spacing: 0.15cm;
+		text-transform: uppercase;
+		color: #fff;
+		border: 0.05cm solid #fff;
+	}
+
+	p {
+		margin: 0.5cm 0 0;
+		padding: 0;
+		font-size: 0.43cm;
+		letter-spacing: 0.1cm;
+		font-family: open-sans-regular,sans-serif;
+		text-transform: uppercase;
+		color: #fff;
+	}
 }
 
-section.sidebar {
+aside {
 	padding: 1.5cm 1cm 1cm;
 	width: 6cm;
 	height: 21.2cm;
 	background: #dcd2de;
+
+	p {
+		margin: 0;
+	}
+
+	h2 {
+		margin-top: 2cm;
+	}
 }
 
-section.main {
+main {
 	padding: 1cm;
 	width: 11cm;
 	height: 21.7cm;
 	background: #fff;
+
+	> :first-child {
+		margin-top: 0.5cm;
+	}
 }
 
-section.main > :first-child {
-	margin-top: 0.5cm;
-}
-
-header h1 {
-	display: inline-block;
-	margin: 1.3cm 0 0;
-	padding: 0.5cm;
-	font-family: open-sans-regular,sans-serif;
-	font-size: 1.1cm;
-	letter-spacing: 0.15cm;
-	text-transform: uppercase;
-	color: #fff;
-	border: 0.05cm solid #fff;
-}
-
-header p {
-	margin: 0.5cm 0 0;
-	padding: 0;
-	font-size: 0.43cm;
-	letter-spacing: 0.1cm;
-	font-family: open-sans-regular,sans-serif;
-	text-transform: uppercase;
-	color: #fff;
-}
-
-section h2 {
+h2 {
 	margin: 1.5cm 0 0.5cm;
 	padding: 0;
 	font-family: open-sans-regular,sans-serif;
@@ -174,24 +182,17 @@ ul li {
 	list-style: disc;
 }
 
-section.sidebar p {
-	margin: 0;
-}
+footer {
+	p {
+		display: flex;
+		flex-wrap: stretch;
+		margin: 0;
+		line-height: 1cm;
+	}
 
-section.sidebar h2 {
-	margin-top: 2cm;
-}
-
-footer p {
-	display: flex;
-	flex-wrap: stretch;
-
-	margin: 0;
-	line-height: 1cm;
-}
-
-footer a {
-	flex: 1;
+	a {
+		flex: 1;
+	}
 }
 
 /* Print only styles */

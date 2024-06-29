@@ -3,7 +3,8 @@ const loadCV = async () => {
 
 		const cv = await fetchData('scripts/cv.json');
 		let template = await fetchData('scripts/template.html');
-
+const tempTemplate = document.createElement('div');
+tempTemplate.innerHTML = template;
 		addFirstLastProperties(cv);
 		convertDates(cv, 'year');
 
@@ -19,6 +20,8 @@ const loadCV = async () => {
 		document.body.appendChild(tempPage);
 
 
+const main = tempTemplate.querySelector('main');
+console.log(main.innerHTML);
 
 
 		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
@@ -29,7 +32,7 @@ const loadCV = async () => {
 
 		const itemTemplate = extractContentBetweenStrings(template, strings.start, strings.end);
 		template = replaceContentBetweenStrings(template, strings.start, strings.end);
-		tempTag = 'XXXX';
+		const tempTag = md5(strings);
 		template = template.replace(strings.start + strings.end, tempTag);
 
 		const mustacheRendered = Mustache.render(template, cv);
