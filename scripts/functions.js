@@ -6,6 +6,12 @@
  * @returns {string|number} - The converted date component based on the specified format.
  */
 function convertTime(unixTimestamp, format) {
+
+	// Handle string inputs (for example for "present").
+	if (typeof unixTimestamp === 'string' || unixTimestamp instanceof String) {
+		return unixTimestamp;
+	}
+
 	const date = new Date(unixTimestamp * 1000);
 
 	const options = {

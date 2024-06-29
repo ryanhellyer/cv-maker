@@ -11,16 +11,27 @@
 	},
 	"jobs": [
 		{
+			"title": "Guest Services Specialist",
+			"company": "Moxy Hotel Berlin",
+			"start": 1693519200,
+			"end": "present",
+			"tasks": [
+				"Ensured a warm and inviting guest experience through friendly greetings and attentive service.",
+				"Upheld high standards of customer service, resolving guest inquiries and issues promptly.",
+				"Managed guest check-ins and reservations efficiently, maintaining accurate records.",
+				"Orchestrated seamless food and beverage service, adhering to hotel protocols for quality and presentation.",
+				"Proactively maintained cleanliness and organisation of guest areas, contributing to a welcoming environment."
+			]
+		},
+		{
 			"title": "Client Services Specialist",
 			"company": "Concentrix Global Services GmbH",
 			"start": 1609459200,
 			"end": 1712121600,
 			"tasks": [
-				"I worked hard to establish a friendly and solution-focused environment by providing top-notch support (via chat, email, and phone calls) for advertisers on a major global social media platform.",
-				"I acted as the go-to person between the company and our clients, sorting out any issues they had and ensuring they were always satisfied with our services.",
-				"Being adaptable and skilled, I kept myself in the loop with the latest happenings in the industry, learning about new trends, tools, and best ways of doing things.",
-				"I came up with ideas that made us work more efficiently, boosted the way our customers felt about us, and painted a positive picture of our brand.",
-				"I consistently outperformed my targets, earning praise for my excellent customer service skills and making a significant contribution to the success of our team."
+				"Supported advertisers on a leading social media platform.",
+				"Acted as a key liaison between the company and clients, ensuring prompt issue resolution.",
+				"Recognised for exceptional customer service and team success."
 			]
 		},
 		{
@@ -29,8 +40,8 @@
 			"start": 1483228800,
 			"end": 1609459200,
 			"tasks": [
-				"Cultivated an active Instagram following of 7,000+ through regular creation and sharing of original digital artwork.",
-				"Capitalized on social media platform by fulfilling follower requests and commissions.",
+				"Cultivated an Instagram following of 7,000+ through original digital artwork.",
+				"Fulfilled follower requests and commissions.",
 				"Demonstrated strong customer engagement and project management skills."
 			]
 		},
@@ -40,9 +51,9 @@
 			"start": 1451606400,
 			"end": 1483228800,
 			"tasks": [
-				"Managed day-to-day office operations in a fast-paced newsroom, handling diverse documentation and administrative duties.",
-				"Collaborated effectively with multiple departments, including accounting, design, marketing, conferences and editorial.",
-				"Carried out transcription services with precision and timeliness, enhancing office productivity."
+				"Managed office operations in a fast-paced newsroom.",
+				"Collaborated with accounting, design, marketing, conferences, and editorial departments.",
+				"Provided accurate transcription services, enhancing office productivity."
 			]
 		},
 		{

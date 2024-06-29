@@ -137,7 +137,9 @@ main {
 	background: #fff;
 
 	> :first-child {
-		margin-top: 0.5cm;
+		> :first-child {
+			margin-top: 0.5cm;
+		}
 	}
 }
 

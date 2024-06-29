@@ -15,14 +15,13 @@ tempTemplate.innerHTML = template;
 		tempPage.style.position = 'absolute';
 		tempPage.style.top = '0';
 		tempPage.style.left = '900px';
-		tempPage.style.opacity = '0.2';
+		tempPage.style.opacity = '0.6';
 		//tempPage.style.visibility = 'hidden';
 		document.body.appendChild(tempPage);
 
 
 const main = tempTemplate.querySelector('main');
-console.log(main.innerHTML);
-
+const sections = Array.from(main.querySelectorAll('section'));
 
 		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
 		const strings = {

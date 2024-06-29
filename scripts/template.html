@@ -18,37 +18,40 @@
 </aside>
 
 <main>
-
-	<h2>Experience</h2>
-	<ol class="jobs">
-		{{#jobs}}
-		<li>
-			<strong>{{title}} | {{company}} | {{start}} &mdash; {{end}}</strong>
-			<ul>
-				{{#tasks}}
-					<li>{{.}}</li>
-				{{/tasks}}
-			</ul>
-		</li>
-		{{/jobs}}
-	</ol>
-
-	<h2>Language Skills</h2>
-	<p>
-		{{#languages}}
-		{{language}}: {{fluency}}
-		{{^isLast}}<br>{{/isLast}}
-		{{/languages}}
-	</p>
-
-	<h2>Education</h2>
-	{{#education}}
+	<section>
+		<h2>Experience</h2>
+		<ol class="jobs">
+			{{#jobs}}
+			<li>
+				<strong>{{title}} | {{company}} | {{start}} &mdash; {{end}}</strong>
+				<ul>
+					{{#tasks}}
+						<li>{{.}}</li>
+					{{/tasks}}
+				</ul>
+			</li>
+			{{/jobs}}
+		</ol>
+	</section>
+	<section>
+		<h2>Language Skills</h2>
 		<p>
-			<strong>{{institution}} | {{start}} &mdash; {{end}}</strong>
-			<br>
-			{{subject}}
-			<br>
-			Thesis: {{thesis}}.
+			{{#languages}}
+			{{language}}: {{fluency}}
+			{{^isLast}}<br>{{/isLast}}
+			{{/languages}}
 		</p>
-	{{/education}}
+	</section>
+	<section>
+		<h2>Education</h2>
+		{{#education}}
+			<p>
+				<strong>{{institution}} | {{start}} &mdash; {{end}}</strong>
+				<br>
+				{{subject}}
+				<br>
+				Thesis: {{thesis}}.
+			</p>
+		{{/education}}
+	</section>
 </main>
