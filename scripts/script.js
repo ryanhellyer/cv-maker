@@ -2,9 +2,8 @@ const loadCV = async () => {
 	try {
 
 		const cv = await fetchData('scripts/cv.json');
-		let template = await fetchData('scripts/template.html');
-const tempTemplate = document.createElement('div');
-tempTemplate.innerHTML = template;
+		const template = document.createElement('div');
+		template.innerHTML = await fetchData('scripts/template.html');
 		addFirstLastProperties(cv);
 		convertDates(cv, 'year');
 
@@ -20,8 +19,24 @@ tempTemplate.innerHTML = template;
 		document.body.appendChild(tempPage);
 
 
-const main = tempTemplate.querySelector('main');
+const main = template.querySelector('main');
 const sections = Array.from(main.querySelectorAll('section'));
+
+main.innerHTML = '';
+console.log('....'+template.innerHTML);
+
+sections.forEach(section => {
+	main.innerHTML += section.outerHTML;
+
+
+//
+
+
+
+	main.innerHTML += '<hr>';
+});
+
+//console.log('....'+template.innerHTML);
 
 		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
 		const strings = {
@@ -29,12 +44,12 @@ const sections = Array.from(main.querySelectorAll('section'));
 			'end': '{{/jobs}}',
 		}
 
-		const itemTemplate = extractContentBetweenStrings(template, strings.start, strings.end);
-		template = replaceContentBetweenStrings(template, strings.start, strings.end);
+		const itemTemplate = extractContentBetweenStrings(template.innerHTML, strings.start, strings.end);
+		template.innerHTML = replaceContentBetweenStrings(template.innerHTML, strings.start, strings.end);
 		const tempTag = md5(strings);
-		template = template.replace(strings.start + strings.end, tempTag);
+		template.innerHTML = template.innerHTML.replace(strings.start + strings.end, tempTag);
 
-		const mustacheRendered = Mustache.render(template, cv);
+		const mustacheRendered = Mustache.render(template.innerHTML, cv);
 		const rendered = unescapeHTMLElements(mustacheRendered);
 
 const items = cv.jobs;
