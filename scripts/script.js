@@ -1,26 +1,19 @@
 const loadCV = async () => {
 	try {
-		// Get CV.
-		const responseJSON = await fetch('scripts/cv.json');
-		if (!responseJSON.ok) {
-			throw new Error(`HTTP error! status: ${responseJSON.status}`);
-		}
-		const cv = await responseJSON.json();
 
-		// Get main template.
-		const responseTemplate = await fetch('scripts/template.html');
-		if (!responseTemplate.ok) {
-			throw new Error(`HTTP error! status: ${responseTemplate.status}`);
-		}
-		let template = await responseTemplate.text();
+		const cv = await fetchData('scripts/cv.json');
+		let template = await fetchData('scripts/template.html');
 
 		addFirstLastProperties(cv);
 		convertDates(cv, 'year');
 
 		const page = document.querySelector('page');
 
-// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
-
+		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
+		const strings = {
+			'start': '{{#jobs}}',
+			'end': '{{/jobs}}',
+		}
 		const startString = '{{#jobs}}';
 		const endString = '{{/jobs}}';
 

@@ -146,28 +146,43 @@ const getTemplateSections = (initialTemplate) => {
 	return { updatedTemplate, contentTemplate };
 };
 
+/**
+ * Splits an HTML string into sections based on <h2> headings.
+ *
+ * @param {string} htmlString - The HTML string to split into sections.
+ * @returns {Array<string>} - An array of HTML sections, each containing content between <h2> headings.
+ */
 const splitContentSections = (htmlString) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlString, 'text/html');
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(htmlString, 'text/html');
 
-  const result = [];
-  const headings = doc.querySelectorAll('h2');
+	const result = [];
+	const headings = doc.querySelectorAll('h2');
 
-  headings.forEach(heading => {
-	let content = `<h2>${heading.textContent.trim()}</h2>`;
+	headings.forEach(heading => {
+		let content = `<h2>${heading.textContent.trim()}</h2>`;
 
-	let nextElement = heading.nextElementSibling;
-	while (nextElement && nextElement.tagName !== 'H2') {
-	  content += nextElement.outerHTML;
-	  nextElement = nextElement.nextElementSibling;
-	}
+		let nextElement = heading.nextElementSibling;
+		while (nextElement && nextElement.tagName !== 'H2') {
+			content += nextElement.outerHTML;
+			nextElement = nextElement.nextElementSibling;
+		}
 
-	result.push(content.trim());
-  });
+		result.push(content.trim());
+	});
 
-  return result;
+	return result;
 };
 
+/**
+ * Replaces content between specified start and end strings in an HTML string.
+ *
+ * @param {string} htmlString - The HTML string in which to replace content.
+ * @param {string} startString - The starting string to search for.
+ * @param {string} endString - The ending string to search for.
+ * @returns {string} - The HTML string with content between `startString` and `endString` replaced,
+ *                     or the original HTML string if either string is not found.
+ */
 const replaceContentBetweenStrings = (htmlString, startString, endString) => {
 	// Create a new DOM parser
 	const parser = new DOMParser();
@@ -189,6 +204,14 @@ const replaceContentBetweenStrings = (htmlString, startString, endString) => {
 	return htmlString;
 };
 
+/**
+ * Extracts content from an HTML string between specified start and end strings.
+ *
+ * @param {string} htmlString - The HTML string from which to extract content.
+ * @param {string} startString - The starting string to search for.
+ * @param {string} endString - The ending string to search for.
+ * @returns {string} - The content between `startString` and `endString`, or an empty string if not found.
+ */
 const extractContentBetweenStrings = (htmlString, startString, endString) => {
 	// Create a new DOM parser
 	const parser = new DOMParser();
@@ -209,7 +232,37 @@ const extractContentBetweenStrings = (htmlString, startString, endString) => {
 	return '';
 };
 
+/**
+ * Checks if an element has overflow in its content.
+ *
+ * @param {Element} element - The DOM element to check for overflow.
+ * @returns {boolean} - True if the element has overflow, false otherwise.
+ */
 function hasOverflow(element) {
-	//console.log('element.scrollHeight: ' + element.scrollHeight, ', element.clientHeight: ' + element.clientHeight);
     return element.scrollHeight > element.clientHeight;
+}
+
+/**
+ * Fetches data from a URL and determines its type based on content-type header.
+ * Supports fetching JSON for .json files and text for .html, .text, or .txt files.
+ * Throws an error for unsupported content types.
+ *
+ * @param {string} url - The URL from which to fetch data.
+ * @returns {Promise<any>} - Resolves with JSON object or text string depending on content type.
+ * @throws {Error} - If fetch fails or if an unsupported content type is encountered.
+ */
+async function fetchData(url) {
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error(`Failed to fetch data from ${url}. HTTP status: ${response.status}`);
+	}
+
+	const contentType = response.headers.get('content-type');
+	if (contentType.includes('application/json')) {
+		return response.json();
+	} else if (contentType.includes('text/html') || contentType.includes('text/plain')) {
+		return response.text();
+	} else {
+		throw new Error(`Unsupported content type ${contentType} for ${url}`);
+	}
 }
