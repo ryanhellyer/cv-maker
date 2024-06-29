@@ -9,22 +9,6 @@ const loadCV = async () => {
 
 		const page = document.querySelector('page');
 
-
-
-		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
-		const strings = {
-			'start': '{{#jobs}}',
-			'end': '{{/jobs}}',
-		}
-
-		const jobTemplate = extractContentBetweenStrings(template, strings.start, strings.end);
-		template = replaceContentBetweenStrings(template, strings.start, strings.end);
-		tempTag = 'XXXX';
-		template = template.replace(strings.start + strings.end, tempTag);
-
-		const mustacheRendered = Mustache.render(template, cv);
-		const rendered = unescapeHTMLElements(mustacheRendered);
-
 		// Create temporary page.
 		let tempPage = page.cloneNode(true);
 		tempPage.style.position = 'absolute';
@@ -34,14 +18,33 @@ const loadCV = async () => {
 		//tempPage.style.visibility = 'hidden';
 		document.body.appendChild(tempPage);
 
+
+
+
+		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
+		const strings = {
+			'start': '{{#jobs}}',
+			'end': '{{/jobs}}',
+		}
+
+		const itemTemplate = extractContentBetweenStrings(template, strings.start, strings.end);
+		template = replaceContentBetweenStrings(template, strings.start, strings.end);
+		tempTag = 'XXXX';
+		template = template.replace(strings.start + strings.end, tempTag);
+
+		const mustacheRendered = Mustache.render(template, cv);
+		const rendered = unescapeHTMLElements(mustacheRendered);
+
+const items = cv.jobs;
+
 		(async () => {
-			let jobsList = '';
+			let itemsString = '';
 			const tempArray = [];
 
-			// First loop to render jobs.
-			cv.jobs.forEach((job, index) => {
-				jobsList += Mustache.render(jobTemplate, job);
-				tempArray[index] = rendered.replace(tempTag, jobsList);
+			// First loop to render item.
+			items.forEach((item, index) => {
+				itemsString += Mustache.render(itemTemplate, item);
+				tempArray[index] = rendered.replace(tempTag, itemsString);
 			});
 
 			// Second loop to find the index's which it on the page.
