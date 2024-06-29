@@ -9,6 +9,8 @@ const loadCV = async () => {
 
 		const page = document.querySelector('page');
 
+
+
 		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
 		const strings = {
 			'start': '{{#jobs}}',
@@ -22,40 +24,42 @@ const loadCV = async () => {
 
 		const mustacheRendered = Mustache.render(template, cv);
 		const rendered = unescapeHTMLElements(mustacheRendered);
-let tempPage = page.cloneNode(true);
-tempPage.style.position = 'absolute';
-tempPage.style.top = '0';
-tempPage.style.left = '900px';
-tempPage.style.opacity = '0.2';
-//tempPage.style.visibility = 'hidden';
-document.body.appendChild(tempPage);
 
-let tempArray = [];
-let fittingIndexes = [];
-		let jobsList = '';
-
-		cv.jobs.forEach((job, index) => {
-		    jobsList += Mustache.render(jobTemplate, job);
-		    tempArray[index] = rendered.replace(tempTag, jobsList);
-		});
+		// Create temporary page.
+		let tempPage = page.cloneNode(true);
+		tempPage.style.position = 'absolute';
+		tempPage.style.top = '0';
+		tempPage.style.left = '900px';
+		tempPage.style.opacity = '0.2';
+		//tempPage.style.visibility = 'hidden';
+		document.body.appendChild(tempPage);
 
 		(async () => {
-		    for (const [index, tempRendered] of tempArray.entries()) {
-		        tempPage.innerHTML = tempRendered;
-		        await new Promise(requestAnimationFrame);
+			let jobsList = '';
+			const tempArray = [];
 
-		        if (hasOverflow(tempPage)) {
-			        console.log(index, tempPage.scrollHeight);		        	
-		        }
+			// First loop to render jobs.
+			cv.jobs.forEach((job, index) => {
+				jobsList += Mustache.render(jobTemplate, job);
+				tempArray[index] = rendered.replace(tempTag, jobsList);
+			});
 
-		        if (! hasOverflow(tempPage)) {
-		        	fittingIndexes.push(index);
-		        }
-		    }
+			// Second loop to find the index's which it on the page.
+			const fittingIndexes = [];
+			for (const [index, tempRendered] of tempArray.entries()) {
+				tempPage.innerHTML = tempRendered;
+				await new Promise(requestAnimationFrame);
 
-	        const maxIndex = Math.max(...fittingIndexes);
-			console.log('maxIndex: ' + maxIndex);
-	        page.innerHTML = tempArray[maxIndex];
+				if (!hasOverflow(tempPage)) {
+					fittingIndexes.push(index);
+				}
+			}
+
+			// Determine the index with the maximum fitting.
+			const maxIndex = Math.max(...fittingIndexes);
+
+			// Replace the page content with the best fitting template.
+			page.innerHTML = tempArray[maxIndex];
 		})();
 
 
