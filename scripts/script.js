@@ -14,13 +14,11 @@ const loadCV = async () => {
 			'start': '{{#jobs}}',
 			'end': '{{/jobs}}',
 		}
-		const startString = '{{#jobs}}';
-		const endString = '{{/jobs}}';
 
-		const jobTemplate = extractContentBetweenStrings(template, startString, endString);
-		template = replaceContentBetweenStrings(template, startString, endString);
+		const jobTemplate = extractContentBetweenStrings(template, strings.start, strings.end);
+		template = replaceContentBetweenStrings(template, strings.start, strings.end);
 		tempTag = 'XXXX';
-		template = template.replace(startString + endString, tempTag);
+		template = template.replace(strings.start + strings.end, tempTag);
 
 		const mustacheRendered = Mustache.render(template, cv);
 		const rendered = unescapeHTMLElements(mustacheRendered);
