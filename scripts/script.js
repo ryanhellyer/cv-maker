@@ -2,85 +2,40 @@ const loadCV = async () => {
 	try {
 
 		const cv = await fetchData('scripts/cv.json');
-		const template = document.createElement('div');
-		template.innerHTML = await fetchData('scripts/template.html');
-		addFirstLastProperties(cv);
-		convertDates(cv, 'year');
+		addFirstLastProperties(cv); // maybe turn this into a wrapper for the cv await.
+		convertDates(cv, 'year'); // maybe turn this into a wrapper for the cv await.
 
+		const template = await fetchData('scripts/template.html');
 		const page = document.querySelector('page');
 
-		// Create temporary page.
-		let tempPage = page.cloneNode(true);
-		tempPage.style.position = 'absolute';
-		tempPage.style.top = '0';
-		tempPage.style.left = '900px';
-		tempPage.style.opacity = '0.6';
-		//tempPage.style.visibility = 'hidden';
-		document.body.appendChild(tempPage);
+		page.innerHTML = template;
 
+		const main = page.querySelector('main');
+		let sections = Array.from(main.querySelectorAll('section'));
 
-const main = template.querySelector('main');
-const sections = Array.from(main.querySelectorAll('section'));
+sections = sections.slice(0, 1); // JUST TESTING WITH FIRST SECTION RIGHT NOW.
+		sections.forEach(section => {
+			(async () => {
+				main.innerHTML += section.outerHTML;
 
-main.innerHTML = '';
+				const mustacheRendered = Mustache.render(section.outerHTML, cv);
+				const rendered = unescapeHTMLElements(mustacheRendered);
+				main.innerHTML = rendered;
 
-sections.forEach(section => {
+				let i = cv.jobs.length;
+				while (i !== 0 && hasOverflowed(page)) {
+					i--;
+					cv.jobs = cv.jobs.slice(0, i); // slice from index 0 to 1 (exclusive)
+					const mustacheRendered = Mustache.render(section.outerHTML, cv);
+					const rendered = unescapeHTMLElements(mustacheRendered);
+					main.innerHTML = rendered;
 
-	// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
-	const strings = {
-		'start': '{{#jobs}}',
-		'end': '{{/jobs}}',
-	}
-
-	const itemTemplate = extractContentBetweenStrings(section.outerHTML, strings.start, strings.end);
-	template.innerHTML = replaceContentBetweenStrings(section.outerHTML, strings.start, strings.end);
-	const tempTag = md5(strings);
-	section.innerHTML = section.innerHTML.replace(strings.start + strings.end, tempTag);
-
-	const mustacheRendered = Mustache.render(template.innerHTML, cv);
-	const rendered = unescapeHTMLElements(mustacheRendered);
-
-	const items = cv.jobs;
-
-	(async () => {
-		let itemsString = '';
-		const tempArray = [];
-
-		// First loop to render item.
-		items.forEach((item, index) => {
-			itemsString += Mustache.render(itemTemplate, item);
-			tempArray[index] = rendered.replace(tempTag, itemsString);
+					await new Promise(requestAnimationFrame);
+				}
+			})();
 		});
-
-		// Second loop to find the index's which it on the page.
-		const fittingIndexes = [];
-		for (const [index, tempRendered] of tempArray.entries()) {
-			tempPage.innerHTML = tempRendered;
-			await new Promise(requestAnimationFrame);
-
-			if (!hasOverflow(tempPage)) {
-				fittingIndexes.push(index);
-			}
-		}
-
-		// Determine the index with the maximum fitting.
-		const maxIndex = Math.max(...fittingIndexes);
-
-		// Replace the page content with the best fitting template.
-		main.innerHTML += tempArray[maxIndex];
-page.innerHTML = main.innerHTML;
-	})();
-
-});
-
-//	main.innerHTML += '<hr>';
-
-//console.log('....'+template.innerHTML);
-
-
-
 	} catch (error) {
-		console.error('Error fetching or rendering the JSON file:', error);
+		console.error('Error:', error);
 	}
 };
 window.addEventListener('load', loadCV);

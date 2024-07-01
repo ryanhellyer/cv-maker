@@ -244,7 +244,7 @@ const extractContentBetweenStrings = (htmlString, startString, endString) => {
  * @param {Element} element - The DOM element to check for overflow.
  * @returns {boolean} - True if the element has overflow, false otherwise.
  */
-function hasOverflow(element) {
+function hasOverflowed(element) {
     return element.scrollHeight > element.clientHeight;
 }
 
