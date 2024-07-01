@@ -18,8 +18,38 @@ const loadCV = async () => {
 //sections = sections.slice(0,1);
 
 		block.innerHTML = '';
+const initialJobNumber = cv.jobs.length;
 		for (let section of sections) {
-			await processJobs(cv, section, block, pages, pageKey, template);
+		    let initialHTML = block.innerHTML;
+
+			await processJobs(cv, section, block, initialHTML, pages, pageKey, template);
+/*
+			if (cv.jobs.length !== 0 && initialJobNumber > cv.jobs.length) {
+				console.log('NOW');
+//		        block.innerHTML = initialHTML;
+//		        renderPage(pages[pageKey.value], cv);
+
+		        addPage(pageKey, pages, template);
+				console.log(pageKey.value, 'page added', cv.jobs.length);
+				await processJobs(cv, section, block, initialHTML, pages, pageKey, template);
+console.log(cv.jobs.length);
+				console.log('DONE!');
+			}
+*/
+
+		    if (hasOverflowed(pages[pageKey.value])) {
+		        block.innerHTML = initialHTML;
+		        renderPage(pages[pageKey.value], cv);
+
+		        addPage(pageKey, pages, template);
+				console.log(pageKey.value, 'page added', cv.jobs.length);
+		    }
+
+			console.log(pageKey);
+			if (cv.jobs.length !== 0) {
+//				console.log('llll',cv.jobs.length);
+//				await processJobs(cv, section, block, pages, pageKey, template);
+			}
 //			console.log('pageKey.value: ' + pageKey.value);
 		}
 

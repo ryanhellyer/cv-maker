@@ -6,34 +6,24 @@ const addPage = (pageKey, pages, template) => {
     pages[pageKey.value].innerHTML = template;
 };
 
-const processJobs = async (cv, section, block, pages, pageKey, template, yep = '') => {
-    let initialJobCount = cv.jobs.length;
-    let i = initialJobCount;
-    let initialHTML = block.innerHTML;
-//    console.log(pageKey.value);
+const processJobs = async (cv, section, block, initialHTML, pages, pageKey, template, yep = '') => {
+    let i = cv.jobs.length;
 
     await renderBlock(cv, section, block);
-    while (i !== 0 && hasOverflowed(pages[pageKey.value])) {
+    while (cv.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
         i--;
         cv.jobs = cv.jobs.slice(0, i);
         block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
         block.innerHTML = 'i: ' + i + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
         await renderBlock(cv, section, block);
     }
-
-    if (hasOverflowed(pages[pageKey.value])) {
-        block.innerHTML = initialHTML;
-        renderPage(pages[pageKey.value], cv);
-
-        addPage(pageKey, pages, template);
-		console.log(pageKey.value, 'page added');
-    }
-
+/*
     if (cv.jobs.length !== 0 && cv.jobs.length < initialJobCount) {
+    	console.log('xxxxxxxxxx');
+        addPage(pageKey, pages, template);
 		console.log(pageKey.value);
 	 	await processJobs(cv, section, block, pages, pageKey, template, 'yep');
     }
-/*
 */
 };
 
