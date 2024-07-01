@@ -1,22 +1,23 @@
 const addPage = (pageKey, pages, template) => {
     const newPage = document.createElement('page');
-    pages[pageKey.value].parentNode.insertBefore(newPage, pages[pageKey.value].nextSibling);
+    document.body.insertBefore(newPage, document.body.lastChild);
     pages.push(newPage);
-    pageKey.value++;
     pages[pageKey.value].innerHTML = template;
+//    console.log(template);
 };
 
 const processJobs = async (cv, section, block, initialHTML, pages, pageKey, template, yep = '') => {
-    let i = cv.jobs.length;
-
     await renderBlock(cv, section, block);
+
     while (cv.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
-        i--;
-        cv.jobs = cv.jobs.slice(0, i);
+	    cv.jobs = cv.jobs.slice(0, cv.jobs.length - 1);
         block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
-        block.innerHTML = 'i: ' + i + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
+        block.innerHTML = 'i: ' + cv.jobs.length + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
+
+//console.log('b: '+cv.jobs.length);
         await renderBlock(cv, section, block);
     }
+
 /*
     if (cv.jobs.length !== 0 && cv.jobs.length < initialJobCount) {
     	console.log('xxxxxxxxxx');
