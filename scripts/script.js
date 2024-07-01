@@ -1,3 +1,8 @@
+/*
+NOTE TO SELF: THE cv.jobs VAR IS BEING HANDLED WRONG.
+AS THE FIRST PAGE FILLS WITH JOBS, THE JOBS WE NEED FOR THE SECOND PAGE ARE BEING DELETED, SO
+THE SECOND PAGE SHOWS JIBBERISH.
+*/
 const loadCV = async () => {
 	try {
 		const cv = formatJSON(await fetchData('scripts/cv.json'));
@@ -15,9 +20,10 @@ const loadCV = async () => {
 //sections = sections.slice(0,1);
 
 		block.innerHTML = '';
-const initialJobNumber = cv.jobs.length;
+let initialJobNumber = cv.jobs.length;
 		for (let section of sections) {
 			let initialHTML = block.innerHTML;
+console.log(cv.jobs.length);
 			await processJobs(cv, section, block, initialHTML, pages, pageKey, template);
 
 			if (hasOverflowed(pages[pageKey.value])) {
@@ -26,21 +32,23 @@ const initialJobNumber = cv.jobs.length;
 
 				pageKey.value++;
 				addPage(pageKey, pages, template);
+				block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
+
 				console.log('page ' + pageKey.value + ' added', cv.jobs.length);
-			}
-
-
-			/*
-			if (cv.jobs.length !== 0 && initialJobNumber > cv.jobs.length) {
+			}/* else if (cv.jobs.length !== 0 && initialJobNumber > cv.jobs.length) {
 				console.log('NOW');
-				renderPage(pages[pageKey.value], cv);
 
+//				block.innerHTML = initialHTML;
+//				renderPage(pages[pageKey.value], cv);
+
+				pageKey.value++;
 				addPage(pageKey, pages, template);
+				block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
+
 				await processJobs(cv, section, block, initialHTML, pages, pageKey, template);
-console.log(cv.jobs.length);
+
 				console.log('DONE!');
-			}
-			*/
+			}*/
 		}
 
 		renderPage(pages[pageKey.value], cv); // I THINK THIS CATCHES THE LAST PAGE.
