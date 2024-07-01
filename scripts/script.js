@@ -23,64 +23,60 @@ const main = template.querySelector('main');
 const sections = Array.from(main.querySelectorAll('section'));
 
 main.innerHTML = '';
-console.log('....'+template.innerHTML);
 
 sections.forEach(section => {
-	main.innerHTML += section.outerHTML;
 
+	// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
+	const strings = {
+		'start': '{{#jobs}}',
+		'end': '{{/jobs}}',
+	}
 
-//
+	const itemTemplate = extractContentBetweenStrings(section.outerHTML, strings.start, strings.end);
+	template.innerHTML = replaceContentBetweenStrings(section.outerHTML, strings.start, strings.end);
+	const tempTag = md5(strings);
+	section.innerHTML = section.innerHTML.replace(strings.start + strings.end, tempTag);
 
+	const mustacheRendered = Mustache.render(template.innerHTML, cv);
+	const rendered = unescapeHTMLElements(mustacheRendered);
 
+	const items = cv.jobs;
 
-	main.innerHTML += '<hr>';
+	(async () => {
+		let itemsString = '';
+		const tempArray = [];
+
+		// First loop to render item.
+		items.forEach((item, index) => {
+			itemsString += Mustache.render(itemTemplate, item);
+			tempArray[index] = rendered.replace(tempTag, itemsString);
+		});
+
+		// Second loop to find the index's which it on the page.
+		const fittingIndexes = [];
+		for (const [index, tempRendered] of tempArray.entries()) {
+			tempPage.innerHTML = tempRendered;
+			await new Promise(requestAnimationFrame);
+
+			if (!hasOverflow(tempPage)) {
+				fittingIndexes.push(index);
+			}
+		}
+
+		// Determine the index with the maximum fitting.
+		const maxIndex = Math.max(...fittingIndexes);
+
+		// Replace the page content with the best fitting template.
+		main.innerHTML += tempArray[maxIndex];
+page.innerHTML = main.innerHTML;
+	})();
+
 });
+
+//	main.innerHTML += '<hr>';
 
 //console.log('....'+template.innerHTML);
 
-		// THIS IS FOCUSING ON JOBS, BUT ALSO NEED TO APPLY TO OTHER STUFF, LIKE EDUCATION ETC.
-		const strings = {
-			'start': '{{#jobs}}',
-			'end': '{{/jobs}}',
-		}
-
-		const itemTemplate = extractContentBetweenStrings(template.innerHTML, strings.start, strings.end);
-		template.innerHTML = replaceContentBetweenStrings(template.innerHTML, strings.start, strings.end);
-		const tempTag = md5(strings);
-		template.innerHTML = template.innerHTML.replace(strings.start + strings.end, tempTag);
-
-		const mustacheRendered = Mustache.render(template.innerHTML, cv);
-		const rendered = unescapeHTMLElements(mustacheRendered);
-
-const items = cv.jobs;
-
-		(async () => {
-			let itemsString = '';
-			const tempArray = [];
-
-			// First loop to render item.
-			items.forEach((item, index) => {
-				itemsString += Mustache.render(itemTemplate, item);
-				tempArray[index] = rendered.replace(tempTag, itemsString);
-			});
-
-			// Second loop to find the index's which it on the page.
-			const fittingIndexes = [];
-			for (const [index, tempRendered] of tempArray.entries()) {
-				tempPage.innerHTML = tempRendered;
-				await new Promise(requestAnimationFrame);
-
-				if (!hasOverflow(tempPage)) {
-					fittingIndexes.push(index);
-				}
-			}
-
-			// Determine the index with the maximum fitting.
-			const maxIndex = Math.max(...fittingIndexes);
-
-			// Replace the page content with the best fitting template.
-			page.innerHTML = tempArray[maxIndex];
-		})();
 
 
 	} catch (error) {
