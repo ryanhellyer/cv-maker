@@ -13,24 +13,23 @@ const loadCV = async () => {
 		const main = page.querySelector('main');
 		let sections = Array.from(main.querySelectorAll('section'));
 
-sections = sections.slice(0, 1); // JUST TESTING WITH FIRST SECTION RIGHT NOW.
+cv.jobs = cv.jobs.slice(0,3);
 
+		main.innerHTML = '';
 		for (let section of sections) {
-			main.innerHTML += section.outerHTML;
-
-			const mustacheRendered = Mustache.render(section.outerHTML, cv);
-			const rendered = unescapeHTMLElements(mustacheRendered);
-			main.innerHTML = rendered;
-
 			let i = cv.jobs.length;
+			let initialHTML = main.innerHTML;
+			
+			await renderCV(cv, section, main);
 			while (i !== 0 && hasOverflowed(page)) {
 				i--;
-				cv.jobs = cv.jobs.slice(0, i); // Adjust cv data
-				const mustacheRendered = Mustache.render(section.outerHTML, cv);
-				const rendered = unescapeHTMLElements(mustacheRendered);
-				main.innerHTML = rendered;
+				cv.jobs = cv.jobs.slice(0, i);
+				main.innerHTML = initialHTML; // Reset to initial content before re-rendering
+				await renderCV(cv, section, main);
+			}
 
-				await new Promise(requestAnimationFrame);
+			if (hasOverflowed(page)) {
+				main.innerHTML = initialHTML;
 			}
 		}
 
@@ -42,3 +41,11 @@ sections = sections.slice(0, 1); // JUST TESTING WITH FIRST SECTION RIGHT NOW.
 	}
 };
 window.addEventListener('load', loadCV);
+
+async function renderCV(cv, section, main) {
+	const mustacheRendered = Mustache.render(section.outerHTML, cv);
+	const rendered = unescapeHTMLElements(mustacheRendered);
+	main.innerHTML += rendered;
+
+	await new Promise(requestAnimationFrame);
+}
