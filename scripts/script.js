@@ -42,11 +42,3 @@ cv.jobs = cv.jobs.slice(0,3);
 	}
 };
 window.addEventListener('load', loadCV);
-
-async function renderCV(cv, section, main) {
-	const mustacheRendered = Mustache.render(section.outerHTML, cv);
-	const rendered = unescapeHTMLElements(mustacheRendered);
-	main.innerHTML += rendered;
-
-	await new Promise(requestAnimationFrame);
-}

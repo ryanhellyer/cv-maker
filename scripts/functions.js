@@ -1,4 +1,20 @@
 /**
+ * Renders a CV section using Mustache templates and appends it to a specified element.
+ *
+ * @param {Object} cv - The CV data for the template.
+ * @param {HTMLElement} section - The Mustache template element.
+ * @param {HTMLElement} element - The target element to append the rendered content.
+ * @returns {Promise<void>} Resolves after rendering and DOM update.
+ */
+async function renderCV(cv, section, element) {
+	const mustacheRendered = Mustache.render(section.outerHTML, cv);
+	const rendered = unescapeHTMLElements(mustacheRendered);
+	element.innerHTML += rendered;
+
+	await new Promise(requestAnimationFrame);
+}
+
+/**
  * Converts a Unix timestamp to a specified date component.
  * 
  * @param {number} unixTimestamp - The Unix timestamp to be converted.
