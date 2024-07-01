@@ -1,18 +1,71 @@
+const addPage = (pageKey, pages, template) => {
+    const newPage = document.createElement('page');
+    pages[pageKey.value].parentNode.insertBefore(newPage, pages[pageKey.value].nextSibling);
+    pages.push(newPage);
+    pageKey.value++;
+    pages[pageKey.value].innerHTML = template;
+};
+
+const processJobs = async (cv, section, block, pages, pageKey, template, yep = '') => {
+    let initialJobCount = cv.jobs.length;
+    let i = initialJobCount;
+    let initialHTML = block.innerHTML;
+//    console.log(pageKey.value);
+
+    await renderBlock(cv, section, block);
+    while (i !== 0 && hasOverflowed(pages[pageKey.value])) {
+        i--;
+        cv.jobs = cv.jobs.slice(0, i);
+        block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
+        block.innerHTML = 'i: ' + i + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
+        await renderBlock(cv, section, block);
+    }
+
+    if (hasOverflowed(pages[pageKey.value])) {
+        block.innerHTML = initialHTML;
+        renderPage(pages[pageKey.value], cv);
+
+        addPage(pageKey, pages, template);
+		console.log(pageKey.value, 'page added');
+    }
+
+    if (cv.jobs.length !== 0 && cv.jobs.length < initialJobCount) {
+		console.log(pageKey.value);
+	 	await processJobs(cv, section, block, pages, pageKey, template, 'yep');
+    }
+/*
+*/
+};
+
+
+
 /**
- * Renders a CV section using Mustache templates and appends it to a specified element.
+ * Renders a block using Mustache templates and appends it to a specified element.
  *
  * @param {Object} cv - The CV data for the template.
  * @param {HTMLElement} section - The Mustache template element.
- * @param {HTMLElement} element - The target element to append the rendered content.
+ * @param {HTMLElement} block - The target element to append the rendered content.
  * @returns {Promise<void>} Resolves after rendering and DOM update.
  */
-async function renderCV(cv, section, element) {
+async function renderBlock(cv, section, block) {
 	const mustacheRendered = Mustache.render(section.outerHTML, cv);
 	const rendered = unescapeHTMLElements(mustacheRendered);
-	element.innerHTML += rendered;
+	block.innerHTML += rendered;
 
 	await new Promise(requestAnimationFrame);
 }
+
+/**
+ * Renders a CV page using Mustache templates and updates its content.
+ *
+ * @param {array} pages - The page elements.
+ * @param {Object} cv - The CV data object used for rendering the template.
+ */
+const renderPage = (page, cv) => {
+	const mustacheRendered = Mustache.render(page.innerHTML, cv);
+	const rendered = unescapeHTMLElements(mustacheRendered);
+	page.innerHTML = rendered;
+};
 
 /**
  * Converts a Unix timestamp to a specified date component.
@@ -138,11 +191,6 @@ const convertDates = (obj, format) => {
  *
  * @param {string} str - The string containing HTML escaped characters.
  * @return {string} - The unescaped string with HTML elements and entities.
- *
- * @example
- * const escapedHTML = "Hello &lt;p&gt;This is a paragraph.&lt;/p&gt; &amp; &quot; &apos; &#x2F; &nbsp;";
- * const unescapedHTML = unescapeHTMLElements(escapedHTML);
- * console.log(unescapedHTML);  // Output: Hello <p>This is a paragraph.</p> & " ' /  
  */
 const unescapeHTMLElements = (str) => {
   const tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'span', 'br', 'hr', 'div'];
