@@ -167,29 +167,6 @@ const unescapeHTMLElements = (str) => {
 };
 
 /**
- * Extracts the content of the .main section from the initial template and removes it,
- * returning the updated template and the content of the .main section.
- *
- * @param {string} initialTemplate - The initial HTML template as a string.
- * @returns {Object} An object containing the updated template without the .main section
- *                   and the content of the .main section.
- *                   { updatedTemplate: string, contentTemplate: string }
- */
-const getTemplateSections = (initialTemplate) => {
-	let container = document.createElement('div');
-	container.innerHTML = initialTemplate;
-
-	let mainSection = container.querySelector('.main');
-	const contentTemplate = mainSection.innerHTML;
-
-	mainSection.innerHTML = '';
-
-	const updatedTemplate = container.innerHTML;
-
-	return { updatedTemplate, contentTemplate };
-};
-
-/**
  * Splits an HTML string into sections based on <h2> headings.
  *
  * @param {string} htmlString - The HTML string to split into sections.
