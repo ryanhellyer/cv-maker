@@ -41,9 +41,25 @@ function convertTime(unixTimestamp, format) {
 }
 
 /**
+ * Recursively adds isFirst and isLast properties to the first and last items of arrays within an object,
+ * and converts date fields in the object to a specific format.
+ * 
+ * @param {Object} obj - The object to process.
+ * @param {string} format - The date format to convert to.
+ * @returns {object} - The formatted JSON blob.
+ */
+const formatJSON = (obj, format = 'year') => {
+    obj = addFirstLastProperties(obj);
+    obj = convertDates(obj, format);
+
+    return obj;
+};
+
+/**
  * Recursively adds isFirst and isLast properties to the first and last items of arrays within an object.
  * 
  * @param {Object} obj - The object to process.
+ * @returns {object} - The JSON blob with added first and last properties.
  */
 const addFirstLastProperties = (obj) => {
 
@@ -67,20 +83,23 @@ const addFirstLastProperties = (obj) => {
 
 		// Check if the value is a non-null object and recursively process it
 		} else if (typeof obj[key] === 'object' && obj[key] !== null) {
-			addFirstLastProperties(obj[key]);
+			obj[key] = addFirstLastProperties(obj[key]);
 		}
 	}
+
+	return obj;
 };
 
 /**
  * Recursively converts date fields in an object to a specific format.
  * @param {Object} obj - The object containing date fields to be converted.
+ * @returns {object} - The JSON blob with formatted time strings.
  */
 const convertDates = (obj, format) => {
 	for (const key in obj) {
 		if (obj.hasOwnProperty(key)) {
 			if (typeof obj[key] === 'object') {
-				convertDates(obj[key], format);
+				obj[key] = convertDates(obj[key], format);
 			} 
 
 			// If the property is 'start' or 'date', format the timestamp.
@@ -89,6 +108,8 @@ const convertDates = (obj, format) => {
 			}
 		}
 	}
+
+	return obj;
 };
 
 /**

@@ -1,16 +1,16 @@
 const loadCV = async () => {
 	try {
-
-		const cv = await fetchData('scripts/cv.json');
-		addFirstLastProperties(cv); // maybe turn this into a wrapper for the cv await.
-		convertDates(cv, 'year'); // maybe turn this into a wrapper for the cv await.
-
+		const cv = formatJSON(await fetchData('scripts/cv.json'));
 		const template = await fetchData('scripts/template.html');
-		const page = document.querySelector('page');
 
-		page.innerHTML = template;
+		let pages = [];
+		pages.push(document.querySelector('page'));
 
-		const main = page.querySelector('main');
+const page = pages[0];
+
+		pages[0].innerHTML = template;
+
+		const main = pages[0].querySelector('main');
 		let sections = Array.from(main.querySelectorAll('section'));
 
 cv.jobs = cv.jobs.slice(0,3);
@@ -21,21 +21,22 @@ cv.jobs = cv.jobs.slice(0,3);
 			let initialHTML = main.innerHTML;
 			
 			await renderCV(cv, section, main);
-			while (i !== 0 && hasOverflowed(page)) {
+			while (i !== 0 && hasOverflowed(pages[0])) {
 				i--;
 				cv.jobs = cv.jobs.slice(0, i);
 				main.innerHTML = initialHTML; // Reset to initial content before re-rendering
 				await renderCV(cv, section, main);
 			}
 
-			if (hasOverflowed(page)) {
+			if (hasOverflowed(pages[0])) {
 				main.innerHTML = initialHTML;
+//XXX make new page
 			}
 		}
 
-		const mustacheRendered = Mustache.render(page.innerHTML, cv);
+		const mustacheRendered = Mustache.render(pages[0].innerHTML, cv);
 		const rendered = unescapeHTMLElements(mustacheRendered);
-		page.innerHTML = rendered;
+		pages[0].innerHTML = rendered;
 	} catch (error) {
 		console.error('Error:', error);
 	}
