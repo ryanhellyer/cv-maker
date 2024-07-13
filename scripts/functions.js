@@ -2,36 +2,29 @@ const addPage = (pageKey, pages, template,) => {
     const newPage = document.createElement('page');
     document.body.insertBefore(newPage, document.body.lastChild);
     pages.push(newPage);
-    console.log(pages);
     pages[pageKey.value].innerHTML = template;
 };
 
-const processJobs = async (cv, section, block, initialHTML, pages, pageKey, template, yep = '') => {
-    await renderBlock(cv, section, block);
-console.log(
-	cv.jobs.length,
-	hasOverflowed(pages[pageKey.value])
-);
-    while (cv.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
-	    cv.jobs = cv.jobs.slice(0, cv.jobs.length - 1);
+const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) => {
+    await renderBlock(cvTemp, section, block);
+
+    //console.log('start of processJobs', pageKey.value, cvTemp, cvTemp.jobs);
+
+    const removedJobs = [];
+
+    while (cvTemp.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
+        removedJobs.unshift(cvTemp.jobs.pop()); // Remove the last job and add it to the front of the removedJobs array.
         block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
-        block.innerHTML = 'i: ' + cv.jobs.length + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
+        block.innerHTML = 'i: ' + cvTemp.jobs.length + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
 
-console.log('b: '+cv.jobs.length);
-        await renderBlock(cv, section, block);
+        await renderBlock(cvTemp, section, block);
+        await new Promise(resolve => setTimeout(resolve, 300));
     }
 
-/*
-    if (cv.jobs.length !== 0 && cv.jobs.length < initialJobCount) {
-    	console.log('xxxxxxxxxx');
-        addPage(pageKey, pages, template);
-		console.log(pageKey.value);
-	 	await processJobs(cv, section, block, pages, pageKey, template, 'yep');
-    }
-*/
+    //console.log('end of processJobs', pageKey.value, cvTemp, cvTemp.jobs);
+
+    return removedJobs; // Return the jobs that haven't been added yet.
 };
-
-
 
 /**
  * Renders a block using Mustache templates and appends it to a specified element.
@@ -206,92 +199,6 @@ const unescapeHTMLElements = (str) => {
   const regex = new RegExp(Object.keys(entities).join('|'), 'g');
   
   return str.replace(regex, match => entities[match]);
-};
-
-/**
- * Splits an HTML string into sections based on <h2> headings.
- *
- * @param {string} htmlString - The HTML string to split into sections.
- * @returns {Array<string>} - An array of HTML sections, each containing content between <h2> headings.
- */
-const splitContentSections = (htmlString) => {
-	const parser = new DOMParser();
-	const doc = parser.parseFromString(htmlString, 'text/html');
-
-	const result = [];
-	const headings = doc.querySelectorAll('h2');
-
-	headings.forEach(heading => {
-		let content = `<h2>${heading.textContent.trim()}</h2>`;
-
-		let nextElement = heading.nextElementSibling;
-		while (nextElement && nextElement.tagName !== 'H2') {
-			content += nextElement.outerHTML;
-			nextElement = nextElement.nextElementSibling;
-		}
-
-		result.push(content.trim());
-	});
-
-	return result;
-};
-
-/**
- * Replaces content between specified start and end strings in an HTML string.
- *
- * @param {string} htmlString - The HTML string in which to replace content.
- * @param {string} startString - The starting string to search for.
- * @param {string} endString - The ending string to search for.
- * @returns {string} - The HTML string with content between `startString` and `endString` replaced,
- *                     or the original HTML string if either string is not found.
- */
-const replaceContentBetweenStrings = (htmlString, startString, endString) => {
-	// Create a new DOM parser
-	const parser = new DOMParser();
-	// Parse the string into a document
-	const doc = parser.parseFromString(htmlString, 'text/html');
-
-	// Find the start and end positions of the strings
-	const startIndex = htmlString.indexOf(startString);
-	const endIndex = htmlString.indexOf(endString, startIndex + startString.length);
-
-	if (startIndex !== -1 && endIndex !== -1) {
-		// Remove content between the two strings
-		const beforeContent = htmlString.slice(0, startIndex + startString.length);
-		const afterContent = htmlString.slice(endIndex);
-		return beforeContent + afterContent;
-	}
-
-	// If either string is not found, return the original HTML string
-	return htmlString;
-};
-
-/**
- * Extracts content from an HTML string between specified start and end strings.
- *
- * @param {string} htmlString - The HTML string from which to extract content.
- * @param {string} startString - The starting string to search for.
- * @param {string} endString - The ending string to search for.
- * @returns {string} - The content between `startString` and `endString`, or an empty string if not found.
- */
-const extractContentBetweenStrings = (htmlString, startString, endString) => {
-	// Create a new DOM parser
-	const parser = new DOMParser();
-	// Parse the string into a document
-	const doc = parser.parseFromString(htmlString, 'text/html');
-	
-	// Find the start and end positions of the strings
-	const startIndex = htmlString.indexOf(startString);
-	const endIndex = htmlString.indexOf(endString, startIndex + startString.length);
-	
-	if (startIndex !== -1 && endIndex !== -1) {
-		// Extract content between the two strings
-		const content = htmlString.slice(startIndex + startString.length, endIndex);
-		return content;
-	}
-	
-	// If either string is not found, return an empty string
-	return '';
 };
 
 /**

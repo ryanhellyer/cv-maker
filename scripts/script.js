@@ -3,6 +3,8 @@ NOTE TO SELF: THE cv.jobs VAR IS BEING HANDLED WRONG.
 AS THE FIRST PAGE FILLS WITH JOBS, THE JOBS WE NEED FOR THE SECOND PAGE ARE BEING DELETED, SO
 THE SECOND PAGE SHOWS JIBBERISH.
 */
+console.log('Use this for generating PDFs: https://www.npmjs.com/package/jspdf');
+
 const loadCV = async () => {
 	try {
 		const cv = formatJSON(await fetchData('scripts/cv.json'));
@@ -20,38 +22,44 @@ const loadCV = async () => {
 //sections = sections.slice(0,1);
 
 		block.innerHTML = '';
-let initialJobNumber = cv.jobs.length;
+		let cvTemp = cv;
+
 		for (let section of sections) {
-			let initialHTML = block.innerHTML;
-console.log(cv.jobs.length);
-			await processJobs(cv, section, block, initialHTML, pages, pageKey, template);
+		    console.log(section);
+if (section.innerHTML.includes('Education')) {
+	console.log('DONE1');
+}
 
-			if (hasOverflowed(pages[pageKey.value])) {
-				block.innerHTML = initialHTML;
-				renderPage(pages[pageKey.value], cv);
+		    let unprocessedJobs;
+		    do {
+				let initialHTML = block.innerHTML;
 
-				pageKey.value++;
-				addPage(pageKey, pages, template);
-				block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
+		        unprocessedJobs = await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
+		        cvTemp.jobs = unprocessedJobs;
 
-				console.log('page ' + pageKey.value + ' added', cv.jobs.length);
-			}/* else if (cv.jobs.length !== 0 && initialJobNumber > cv.jobs.length) {
-				console.log('NOW');
+				if (
+					hasOverflowed(pages[pageKey.value])
+					&&
+					unprocessedJobs.length > 0
+				) {
+					block.innerHTML = initialHTML;
+					renderPage(pages[pageKey.value], cv);
 
-//				block.innerHTML = initialHTML;
-//				renderPage(pages[pageKey.value], cv);
+					pageKey.value++;
+					addPage(pageKey, pages, template);
+					block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
 
-				pageKey.value++;
-				addPage(pageKey, pages, template);
-				block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
+			        await new Promise(resolve => setTimeout(resolve, 2000));
+					//console.log('unprocessedJobs', unprocessedJobs);
+				}
+		    } while (unprocessedJobs.length !== 0);
 
-				await processJobs(cv, section, block, initialHTML, pages, pageKey, template);
-
-				console.log('DONE!');
-			}*/
+if (section.innerHTML.includes('Education')) {
+	console.log('DONE');
+}
 		}
 
-		renderPage(pages[pageKey.value], cv); // I THINK THIS CATCHES THE LAST PAGE.
+		renderPage(pages[pageKey.value], cvTemp); // I THINK THIS CATCHES THE LAST PAGE.
 	} catch (error) {
 		console.error('Error:', error);
 	}
