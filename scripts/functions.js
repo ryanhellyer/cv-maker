@@ -37,6 +37,9 @@ const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) 
 async function renderBlock(cv, section, block) {
 	const mustacheRendered = Mustache.render(section.outerHTML, cv);
 	const rendered = unescapeHTMLElements(mustacheRendered);
+//if (rendered.includes('Education')) {
+//	console.log(block, rendered, section);
+//}
 	block.innerHTML += rendered;
 
 	await new Promise(requestAnimationFrame);
@@ -49,6 +52,7 @@ async function renderBlock(cv, section, block) {
  * @param {Object} cv - The CV data object used for rendering the template.
  */
 const renderPage = (page, cv) => {
+//console.log(page.innerHTML);
 	const mustacheRendered = Mustache.render(page.innerHTML, cv);
 	const rendered = unescapeHTMLElements(mustacheRendered);
 	page.innerHTML = rendered;
