@@ -7,7 +7,6 @@ const addPage = (pageKey, pages, template,) => {
 
 const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) => {
 	await renderBlock(cvTemp, section, block);
-//console.log(block.innerHTML);
 
 	const removedJobs = [];
 
@@ -16,11 +15,9 @@ const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) 
 		block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
 		await renderBlock(cvTemp, section, block);
 		await new Promise(resolve => setTimeout(resolve, 300));
-//console.log(pageKey, block.innerHTML);
 	}
 
 	cvTemp.jobs = removedJobs;
-//	return removedJobs; // Return the jobs that haven't been added yet.
 };
 
 /**
