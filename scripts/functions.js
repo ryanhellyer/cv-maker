@@ -32,18 +32,7 @@ const processJobs = async (cv, section, block, initialHTML, pages, pageKey) => {
  * @param {HTMLElement} block - The target element to append the rendered content.
  * @returns {Promise<void>} Resolves after rendering and DOM update.
  */
-let renderBlockCounter = 0;
 async function renderBlock(cv, section, block) {
-	renderBlockCounter++;
-
-
-	if (renderBlockCounter > 1) {
-//		section.innerHTML = stripFirstHeading(section.innerHTML);
-	}
-
-//		console.log(renderBlockCounter, section);
-
-
 	const mustacheRendered = Mustache.render(section.outerHTML, cv);
 	const rendered = unescapeHTMLElements(mustacheRendered);
 

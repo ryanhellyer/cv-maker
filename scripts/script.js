@@ -1,8 +1,3 @@
-/*
-NOTE TO SELF: THE cv.jobs VAR IS BEING HANDLED WRONG.
-AS THE FIRST PAGE FILLS WITH JOBS, THE JOBS WE NEED FOR THE SECOND PAGE ARE BEING DELETED, SO
-THE SECOND PAGE SHOWS JIBBERISH.
-*/
 console.log('Use this for generating PDFs: https://www.npmjs.com/package/jspdf');
 
 const loadCV = async () => {
