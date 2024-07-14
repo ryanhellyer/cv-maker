@@ -202,10 +202,29 @@ footer {
 	margin: 0;
 }
 
+.printing {
+	background:lime;
+
+	button {
+		display: none;
+	}
+
+	page {
+		margin: 0;
+		overflow: hidden;
+		border: none;
+						height: 29.699cm !important;
+	}
+}
+
 @media print {
 	page {
 		margin: 0;
 		overflow: hidden;
 		border: none;
+	}
+
+	button {
+		display: none;
 	}
 }

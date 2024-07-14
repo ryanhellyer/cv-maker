@@ -24,14 +24,22 @@ const loadCV = async () => {
 				await processJobs(cv, section, block, initialHTML, pages, pageKey);
 
 				if (
-					hasOverflowed(pages[pageKey.value])
-					&&
-					cv.jobs.length > 0 || ( initialJobNumber === cv.jobs.length && 0 !== initialJobNumber )
+					(
+						hasOverflowed(pages[pageKey.value])
+						&&
+						cv.jobs.length > 0
+					)
+					||
+					(
+						initialJobNumber === cv.jobs.length
+						&&
+						0 !== initialJobNumber
+					)
 				) {
 					block.innerHTML = initialHTML;
 					renderPage(pages[pageKey.value], cv);
 
-					// Strip first heading, since it was already displayed.
+					// Strip first heading, since it was already displayed. - MAYBE SHOULD ALSO STRIP PARAGRAPHS AND OTHER STUFF BEFORE THE <OL> TOO.
 					section.innerHTML = stripFirstHeading(section.innerHTML);
 
 					pageKey.value++;
@@ -50,3 +58,43 @@ const loadCV = async () => {
 	}
 };
 window.addEventListener('load', loadCV);
+
+
+const button = document.createElement('button');
+button.id = 'generate-pdf';
+button.textContent = 'Generate PDF';
+document.body.appendChild(button);
+
+const button2 = document.createElement('button');
+button2.id = 'save-pdf';
+button2.textContent = 'Save PDF';
+document.body.appendChild(button2);
+
+document.getElementById('save-pdf').addEventListener('click', () => {
+	window.print();
+});
+
+document.getElementById('generate-pdf').addEventListener('click', () => {
+
+    document.body.classList.add('printing');
+
+	waitForPaint(() => {
+    	const element = document.body;
+		const opt = {
+			margin: [0, 0, 0, 0], // top, right, bottom, left in mm
+			filename: 'document.pdf',
+			image: { type: 'jpeg', quality: 0.98 },
+			html2canvas: { scale: 2 },
+			jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+		};
+
+		html2pdf().set(opt).from(element).save();
+	});
+//    document.body.classList.remove('printing');
+});
+
+function waitForPaint(callback) {
+	requestAnimationFrame(() => {
+		requestAnimationFrame(callback);
+	});
+}
