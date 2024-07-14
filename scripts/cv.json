@@ -1,117 +1,116 @@
 {
-	"name": {
-		"full": "Liubov Kurilova"
-	},
-	"tagLine": "Delivering quality service with a smile",
-	"blurb": "<p>Adaptable professional with diverse experience in customer service and archival management. Skilled at enhancing operational efficiency and exceeding performance goals. Bilingual in English and Russian.</p>",
-	"contact": {
-		"email": "liuba.eremenko@gmail.com",
-		"phone": "+49 1522 464 0561",
-		"instagram": "kurilove_art"
-	},
-	"jobs": [
-		{
-			"title": "Guest Services Specialist",
-			"company": "Moxy Hotel Berlin",
-			"start": 1693519200,
-			"end": "present",
-			"tasks": [
-				"Ensured a warm and inviting guest experience through friendly greetings and attentive service.",
-				"Upheld high standards of customer service, resolving guest inquiries and issues promptly.",
-				"Managed guest check-ins and reservations efficiently, maintaining accurate records.",
-				"Orchestrated seamless food and beverage service, adhering to hotel protocols for quality and presentation.",
-				"Proactively maintained cleanliness and organisation of guest areas, contributing to a welcoming environment."
-			]
-		},
-		{
-			"title": "Client Services Specialist",
-			"company": "Concentrix Global Services GmbH",
-			"start": 1609459200,
-			"end": 1712121600,
-			"tasks": [
-				"Supported advertisers on a leading social media platform.",
-				"Acted as a key liaison between the company and clients, ensuring prompt issue resolution.",
-				"Recognised for exceptional customer service and team success."
-			]
-		},
-		{
-			"title": "Digital Artist",
-			"company": "Self employed",
-			"start": 1483228800,
-			"end": 1609459200,
-			"tasks": [
-				"Cultivated an Instagram following of 7,000+ through original digital artwork.",
-				"Fulfilled follower requests and commissions.",
-				"Demonstrated strong customer engagement and project management skills."
-			]
-		},
-		{
-			"title": "Administrative Assistant",
-			"company": "AO Business News Media",
-			"start": 1451606400,
-			"end": 1483228800,
-			"tasks": [
-				"Managed office operations in a fast-paced newsroom.",
-				"Collaborated with accounting, design, marketing, conferences, and editorial departments.",
-				"Provided accurate transcription services, enhancing office productivity."
-			]
-		},
-		{
-			"title": "Temporary Secretary",
-			"company": "Coleman Services",
-			"start": 1420070400,
-			"end": 1451606400,
-			"tasks": [
-				"Supported various companies with operational and project tasks.",
-				"Managed administrative duties for smooth business operations."
-			]
-		},
-		{
-			"title": "Customer Support Professional",
-			"company": "BKC-International House",
-			"start": 1420070400,
-			"end": 1451606400,
-			"tasks": [
-				"Led educational sales and supported language learners."
-			]
-		},
-		{
-			"title": "Sales Professional",
-			"company": "Mexx, BNS Group",
-			"start": 1388534400,
-			"end": 1420070400,
-			"tasks": [
-				"Managed sales, provided customer service, and recommended products.",
-				"Achieved sales targets and assisted customers with fashion choices."
-			]
-		},
-		{
-			"title": "Assistant Archivist",
-			"company": "Russian State Archive, OPJS Telegraph",
-			"start": 1388534400,
-			"end": 1420070400,
-			"tasks": [
-				"Managed, digitized, and organized corporate and state archive documents."
-			]
-		}
-	],
-	"languages": [
-		{
-			"language": "Russian",
-			"fluency": "native"
-		},
-		{
-			"language": "English",
-			"fluency": "full-professional"
-		}
-	],
-	"education": [
-		{
-			"institution": "Russian State University for the Humanities",
-			"start": 1293836400,
-			"end": 1451602799,
-			"subject": "Documentation and Archival Studies",
-			"thesis": "International Business and Technical Archives."
-		}
-	]
+  "name": {
+    "full": "Loony McSillypants"
+  },
+  "tagLine": "Delivering quality service with a laugh",
+  "blurb": "<p>Adaptable goofball with a zany mix of customer service and archival management skills. Great at making things run smoothly and hitting targets while cracking jokes. Fluent in English and French, with a knack for making people smile.</p>",
+  "contact": {
+    "email": "loony.mcsillypants@gmail.com",
+    "phone": "+69 555-HIRE-ME",
+    "instagram": "silly_art"
+  },
+  "jobs": [
+    {
+      "title": "Chief Guest Happiness Officer",
+      "company": "Giggle Inn",
+      "start": 1612137600,
+      "end": "present",
+      "tasks": [
+        "Spread cheer and ensure guests have a laugh-tastic stay.",
+        "Handled check-ins, making guests giggle.",
+        "Managed reservations while juggling punchlines.",
+        "Kept guest areas spick-and-span with a dose of humour."
+      ]
+    },
+    {
+      "title": "Client Chuckles Coordinator",
+      "company": "LaughBox Services Ltd.",
+      "start": 1527811200,
+      "end": 1664582400,
+      "tasks": [
+        "Supported advertisers on a leading social media platform, making them laugh.",
+        "Acted as a go-between for the company and clients, resolving issues with a smile.",
+        "Recognised for top-notch customer service and team mirth."
+      ]
+    },
+    {
+      "title": "Digital Doodle Dynamo",
+      "company": "Self-employed",
+      "start": 1393632000,
+      "end": 1527811200,
+      "tasks": [
+        "Grew an Instagram following of 7,000+ through whimsical digital artwork.",
+        "Fulfilled zany requests and commissions.",
+        "Showed off superb customer engagement and project jester skills."
+      ]
+    },
+    {
+      "title": "Office Wizard of Whimsy",
+      "company": "Daily Chuckle News",
+      "start": 1356998400,
+      "end": 1393632000,
+      "tasks": [
+        "Managed office hijinks in a bustling newsroom.",
+        "Worked with accounting, design, marketing, conferences, and editorial teams, spreading cheer.",
+        "Provided accurate and amusing transcription services."
+      ]
+    },
+    {
+      "title": "Temporary Giggle Secretary",
+      "company": "Laugh Support Services",
+      "start": 1293840000,
+      "end": 1356998400,
+      "tasks": [
+        "Supported various companies with a variety of operational tasks and jokes.",
+        "Managed administrative duties with a humorous touch."
+      ]
+    },
+    {
+      "title": "Customer Support Comedian",
+      "company": "FunnyBone Learning",
+      "start": 1262304000,
+      "end": 1293840000,
+      "tasks": [
+        "Led educational sales and supported language learners with puns and wordplay."
+      ]
+    },
+    {
+      "title": "Fashion Funnyman",
+      "company": "Chuckle Chic, Laughing Threads Group",
+      "start": 1230768000,
+      "end": 1262304000,
+      "tasks": [
+        "Managed sales and provided stylish customer service with a smile.",
+        "Hit sales targets and assisted customers with their fashion choices, adding a humorous twist."
+      ]
+    },
+    {
+      "title": "Archival Antics Assistant",
+      "company": "State Archives of Funland",
+      "start": 1199145600,
+      "end": 1230768000,
+      "tasks": [
+        "Managed, digitized, and organized archive documents, adding a dash of humour to history."
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "fluency": "native"
+    },
+    {
+      "language": "English",
+      "fluency": "full-professional"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Fun and Games",
+      "start": 1167609600,
+      "end": 1262304000,
+      "subject": "Humour Studies and Archival Jokes",
+      "thesis": "Laughing Through the Archives: A Study of Historical Humour."
+    }
+  ]
 }
