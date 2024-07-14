@@ -22,17 +22,16 @@ const loadCV = async () => {
 		let cvTemp = cv;
 
 		for (let section of sections) {
-			let unprocessedJobs;
 
 			do {
 				let initialHTML = block.innerHTML;
-				unprocessedJobs = await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
-				cvTemp.jobs = unprocessedJobs;
-// instead of hasOverflowed here, need to return that it WAS overflowed, because it probably isn't overlowed right now.
+
+				await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
+
 				if (
 					hasOverflowed(pages[pageKey.value])
 					&&
-					unprocessedJobs.length > 0
+					cvTemp.jobs.length > 0
 				) {
 					block.innerHTML = initialHTML;
 					renderPage(pages[pageKey.value], cv);
@@ -47,7 +46,7 @@ const loadCV = async () => {
 
 					await new Promise(resolve => setTimeout(resolve, 1000));
 				}
-			} while (unprocessedJobs.length !== 0);
+			} while (cvTemp.jobs.length !== 0);
 		}
 
 		renderPage(pages[pageKey.value], cvTemp); // I THINK THIS CATCHES THE LAST PAGE.

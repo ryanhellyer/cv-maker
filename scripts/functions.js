@@ -18,7 +18,9 @@ const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) 
 		await new Promise(resolve => setTimeout(resolve, 300));
 //console.log(pageKey, block.innerHTML);
 	}
-	return removedJobs; // Return the jobs that haven't been added yet.
+
+	cvTemp.jobs = removedJobs;
+//	return removedJobs; // Return the jobs that haven't been added yet.
 };
 
 /**
