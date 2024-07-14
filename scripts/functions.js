@@ -8,20 +8,15 @@ const addPage = (pageKey, pages, template,) => {
 const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) => {
     await renderBlock(cvTemp, section, block);
 
-    //console.log('start of processJobs', pageKey.value, cvTemp, cvTemp.jobs);
-
     const removedJobs = [];
 
     while (cvTemp.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
         removedJobs.unshift(cvTemp.jobs.pop()); // Remove the last job and add it to the front of the removedJobs array.
         block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
-        block.innerHTML = 'i: ' + cvTemp.jobs.length + '. ' + block.innerHTML; // TEMPORARY - FOR TESTING
 
         await renderBlock(cvTemp, section, block);
         await new Promise(resolve => setTimeout(resolve, 300));
     }
-
-    //console.log('end of processJobs', pageKey.value, cvTemp, cvTemp.jobs);
 
     return removedJobs; // Return the jobs that haven't been added yet.
 };

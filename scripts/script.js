@@ -15,22 +15,16 @@ const loadCV = async () => {
 
 		addPage(pageKey, pages, template);
 		let block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
-console.log('Stringified', JSON.parse(JSON.stringify(block.innerHTML)), 'Somewhere between this start and the end, the "Experience" section is being added, even though we are not on that section');
 
 		let sections = Array.from(block.querySelectorAll('section'));
 
-//cv.jobs = cv.jobs.slice(0,1);
-//sections = sections.slice(0,1);
-//console.log('despite only loading one section here, the education and language skills bits are still loading. Page 1 but no 0, has Education and Languages in it.', sections);
 		block.innerHTML = '';
 		let cvTemp = cv;
 
 		for (let section of sections) {
-			console.log(section.innerHTML);
 		    let unprocessedJobs;
 		    do {
 				let initialHTML = block.innerHTML;
-//console.log(initialHTML);
 		        unprocessedJobs = await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
 		        cvTemp.jobs = unprocessedJobs;
 
@@ -47,10 +41,8 @@ console.log('Stringified', JSON.parse(JSON.stringify(block.innerHTML)), 'Somewhe
 					addPage(pageKey, pages, template);
 					block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
 					block.innerHTML = '';
-console.log('Error is probably somewhere around this block. It seems to be including Education etc even though this iteration only loads the first section');
-//console.log('stringified block', JSON.parse(JSON.stringify(pages[pageKey.value].innerHTML)));
+
 			        await new Promise(resolve => setTimeout(resolve, 1000));
-					//console.log('unprocessedJobs', unprocessedJobs);
 				}
 		    } while (unprocessedJobs.length !== 0);
 		}
