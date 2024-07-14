@@ -108,8 +108,8 @@
 	"education": [
 		{
 			"institution": "Russian State University for the Humanities",
-			"start": "1293836400",
-			"end": "1451602799",
+			"start": 1293836400,
+			"end": 1451602799,
 			"subject": "Documentation and Archival Studies",
 			"thesis": "International Business and Technical Archives."
 		}
