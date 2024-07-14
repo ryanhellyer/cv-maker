@@ -22,12 +22,13 @@ const loadCV = async () => {
 		let cvTemp = cv;
 
 		for (let section of sections) {
-		    let unprocessedJobs;
-		    do {
-				let initialHTML = block.innerHTML;
-		        unprocessedJobs = await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
-		        cvTemp.jobs = unprocessedJobs;
+			let unprocessedJobs;
 
+			do {
+				let initialHTML = block.innerHTML;
+				unprocessedJobs = await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
+				cvTemp.jobs = unprocessedJobs;
+// instead of hasOverflowed here, need to return that it WAS overflowed, because it probably isn't overlowed right now.
 				if (
 					hasOverflowed(pages[pageKey.value])
 					&&
@@ -36,15 +37,17 @@ const loadCV = async () => {
 					block.innerHTML = initialHTML;
 					renderPage(pages[pageKey.value], cv);
 
+					// Strip first heading, since it was already displayed.
+					section.innerHTML = stripFirstHeading(section.innerHTML);
+
 					pageKey.value++;
-					//alert(pageKey.value);
 					addPage(pageKey, pages, template);
 					block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
 					block.innerHTML = '';
 
-			        await new Promise(resolve => setTimeout(resolve, 1000));
+					await new Promise(resolve => setTimeout(resolve, 1000));
 				}
-		    } while (unprocessedJobs.length !== 0);
+			} while (unprocessedJobs.length !== 0);
 		}
 
 		renderPage(pages[pageKey.value], cvTemp); // I THINK THIS CATCHES THE LAST PAGE.
