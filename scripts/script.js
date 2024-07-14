@@ -19,19 +19,18 @@ const loadCV = async () => {
 		let sections = Array.from(block.querySelectorAll('section'));
 
 		block.innerHTML = '';
-		let cvTemp = cv;
 
 		for (let section of sections) {
 
 			do {
 				let initialHTML = block.innerHTML;
 
-				await processJobs(cvTemp, section, block, initialHTML, pages, pageKey);
+				await processJobs(cv, section, block, initialHTML, pages, pageKey);
 
 				if (
 					hasOverflowed(pages[pageKey.value])
 					&&
-					cvTemp.jobs.length > 0
+					cv.jobs.length > 0
 				) {
 					block.innerHTML = initialHTML;
 					renderPage(pages[pageKey.value], cv);
@@ -46,10 +45,10 @@ const loadCV = async () => {
 
 					await new Promise(resolve => setTimeout(resolve, 1000));
 				}
-			} while (cvTemp.jobs.length !== 0);
+			} while (cv.jobs.length !== 0);
 		}
 
-		renderPage(pages[pageKey.value], cvTemp); // I THINK THIS CATCHES THE LAST PAGE.
+		renderPage(pages[pageKey.value], cv); // I THINK THIS CATCHES THE LAST PAGE.
 	} catch (error) {
 		console.error('Error:', error);
 	}

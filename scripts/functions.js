@@ -5,19 +5,19 @@ const addPage = (pageKey, pages, template,) => {
 	pages[pageKey.value].innerHTML = template;
 };
 
-const processJobs = async (cvTemp, section, block, initialHTML, pages, pageKey) => {
-	await renderBlock(cvTemp, section, block);
+const processJobs = async (cv, section, block, initialHTML, pages, pageKey) => {
+	await renderBlock(cv, section, block);
 
 	const removedJobs = [];
 
-	while (cvTemp.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
-		removedJobs.unshift(cvTemp.jobs.pop()); // Remove the last job and add it to the front of the removedJobs array.
+	while (cv.jobs.length !== 0 && hasOverflowed(pages[pageKey.value])) {
+		removedJobs.unshift(cv.jobs.pop()); // Remove the last job and add it to the front of the removedJobs array.
 		block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
-		await renderBlock(cvTemp, section, block);
+		await renderBlock(cv, section, block);
 		await new Promise(resolve => setTimeout(resolve, 300));
 	}
 
-	cvTemp.jobs = removedJobs;
+	cv.jobs = removedJobs;
 };
 
 /**
