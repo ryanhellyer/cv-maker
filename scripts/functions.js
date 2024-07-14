@@ -5,7 +5,9 @@ const addPage = (pageKey, pages, template,) => {
 	pages[pageKey.value].innerHTML = template;
 };
 
+let jobsProcessed = 0;
 const processJobs = async (cv, section, block, initialHTML, pages, pageKey) => {
+
 	await renderBlock(cv, section, block);
 
 	const removedJobs = [];
@@ -18,6 +20,8 @@ const processJobs = async (cv, section, block, initialHTML, pages, pageKey) => {
 	}
 
 	cv.jobs = removedJobs;
+
+	jobsProcessed++;
 };
 
 /**

@@ -25,12 +25,13 @@ const loadCV = async () => {
 			do {
 				let initialHTML = block.innerHTML;
 
+				const initialJobNumber = cv.jobs.length;
 				await processJobs(cv, section, block, initialHTML, pages, pageKey);
 
 				if (
 					hasOverflowed(pages[pageKey.value])
 					&&
-					cv.jobs.length > 0
+					cv.jobs.length > 0 || ( initialJobNumber === cv.jobs.length && 0 !== initialJobNumber )
 				) {
 					block.innerHTML = initialHTML;
 					renderPage(pages[pageKey.value], cv);
