@@ -11,6 +11,7 @@ require('../config.php');
 $redirectUri = 'https://job-ready-cvs.hellyer.kiwi/import.php';
 
 if (!isset($_GET['code'])) {
+
     // Step 1: Get authorization URL and redirect user
     $authorizationUrl = 'https://www.linkedin.com/oauth/v2/authorization';
 
@@ -58,6 +59,7 @@ if (!isset($_GET['code'])) {
 
         // Step 3: Fetch user's profile data
         $profileUrl = 'https://api.linkedin.com/v2/me';
+$profileUrl = 'https://api.linkedin.com/v2/userinfo';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $profileUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -65,7 +67,13 @@ if (!isset($_GET['code'])) {
             'Authorization: Bearer ' . $accessToken,
             'Content-Type: application/json'
         ]);
+
+        file_put_contents('linkedin_debug.log', date('Y-m-d H:i:s') . "\n" . '$ch: ' . print_r($ch, true) . "\n\n", FILE_APPEND);
+
         $profileResponse = curl_exec($ch);
+
+        file_put_contents('linkedin_debug.log', date('Y-m-d H:i:s') . "\n" . '$profileResponse: ' . print_r($profileResponse, true) . "\n\n", FILE_APPEND);
+
         if (curl_errno($ch)) {
             echo 'Curl error: ' . curl_error($ch);
             exit;
@@ -78,13 +86,16 @@ if (!isset($_GET['code'])) {
 
         // Display CV data (e.g., user's profile)
         print_r($userData);
-        /*
-        echo 'Name: ' . $userData['localizedFirstName'] . ' ' . $userData['localizedLastName'];
-        echo '<br>';
-        echo 'Headline: ' . $userData['headline'];
-        echo '<br>';
-        echo 'Summary: ' . $userData['summary'];
-        */
+
+        if (isset($userData['name'])) {
+            print_r($userData);
+            //echo 'Name: ' . $userData['localizedFirstName'] . ' ' . $userData['localizedLastName'];
+            //echo '<br>';
+            //echo 'Headline: ' . $userData['headline'];
+            //echo '<br>';
+            //echo 'Summary: ' . $userData['summary'];
+        }
+
         // You can save $userData to your database or perform other operations
     } else {
         echo 'Error retrieving access token: ' . $response;
