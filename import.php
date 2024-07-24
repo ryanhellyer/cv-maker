@@ -1,5 +1,8 @@
 <?php
 
+// Added product at https://www.linkedin.com/developers/apps/220682661/products
+// needs to be "Sign In with LinkedIn using OpenID Connect" for the basic system here that is currently working.
+
 // Turn on error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -58,8 +61,8 @@ if (!isset($_GET['code'])) {
         $accessToken = $tokenData['access_token'];
 
         // Step 3: Fetch user's profile data
-        $profileUrl = 'https://api.linkedin.com/v2/me';
-$profileUrl = 'https://api.linkedin.com/v2/userinfo';
+        //$profileUrl = 'https://api.linkedin.com/v2/me';
+        $profileUrl = 'https://api.linkedin.com/v2/userinfo';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $profileUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
