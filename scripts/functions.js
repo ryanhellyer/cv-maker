@@ -60,39 +60,55 @@ const renderPage = (page, cv) => {
  * @param {string} format - The format for the output ('year', 'month', 'week', 'day', or 'weekday').
  * @returns {string|number} - The converted date component based on the specified format.
  */
-function convertTime(unixTimestamp, format) {
+function convertTime(input, format) {
+		let date;
 
-	// Handle string inputs (for example for "present").
-	if (typeof unixTimestamp === 'string' || unixTimestamp instanceof String) {
-		return unixTimestamp;
-	}
+		// Handle string inputs (for example for "present" or "YYYY-mm-dd").
+		if (typeof input === 'string' || input instanceof String) {
+				if (input === 'present') {
+						return input;
+				}
+				// Check if the input is in "YYYY-mm-dd" format
+				const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+				if (dateRegex.test(input)) {
+						date = new Date(input);
+				} else {
+						return input;
+				}
+		} else {
+				// Assume it's a Unix timestamp
+				date = new Date(input * 1000);
+		}
 
-	const date = new Date(unixTimestamp * 1000);
+		// Check if the date is valid
+		if (isNaN(date.getTime())) {
+				return "Invalid date";
+		}
 
-	const options = {
-		year: 'numeric',
-		month: 'long',
-		week: 'numeric',
-		day: 'numeric',
-		weekday: 'long'
-	};
+		const options = {
+				year: 'numeric',
+				month: 'long',
+				week: 'numeric',
+				day: 'numeric',
+				weekday: 'long'
+		};
 
-	switch(format) {
-		case 'year':
-			return date.getFullYear();
-		case 'month':
-			return date.toLocaleString('default', { month: 'long' });
-		case 'week':
-			const startOfYear = new Date(date.getFullYear(), 0, 1);
-			const pastDaysOfYear = (date - startOfYear) / 86400000;
-			return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
-		case 'day':
-			return date.getDate();
-		case 'weekday':
-			return date.toLocaleString('default', { weekday: 'long' });
-		default:
-			return date.toString();
-	}
+		switch(format) {
+				case 'year':
+						return date.getFullYear();
+				case 'month':
+						return date.toLocaleString('default', { month: 'long' });
+				case 'week':
+						const startOfYear = new Date(date.getFullYear(), 0, 1);
+						const pastDaysOfYear = (date - startOfYear) / 86400000;
+						return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+				case 'day':
+						return date.getDate();
+				case 'weekday':
+						return date.toLocaleString('default', { weekday: 'long' });
+				default:
+						return date.toISOString().split('T')[0]; // Returns "YYYY-mm-dd"
+		}
 }
 
 /**
@@ -159,7 +175,13 @@ const convertDates = (obj, format) => {
 
 			// If the property is 'start' or 'date', format the timestamp.
 			else if (key === 'start' || key === 'end') {
-				obj[key] = convertTime(obj[key], format);
+
+				// ATS requires more specific date format.
+				if ('ats' === getQueryParam('type', '')) {
+					obj[key] = convertTime(obj[key], 'YYYY-mm-dd');
+				} else {
+					obj[key] = convertTime(obj[key], format);
+				}
 			}
 		}
 	}
@@ -175,8 +197,8 @@ const convertDates = (obj, format) => {
  * @returns {string} The value of the query parameter, or the default value if not found.
  */
 function getQueryParam(param, defaultValue = '') {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param) || defaultValue;
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(param) || defaultValue;
 }
 
 /**
@@ -191,8 +213,8 @@ function getQueryParam(param, defaultValue = '') {
  * @return {string} - The unescaped string with HTML elements and entities.
  */
 const unescapeHTMLElements = (str) => {
-  const tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'span', 'br', 'hr', 'div'];
-  let entities = {
+	const tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'span', 'br', 'hr', 'div'];
+	let entities = {
 	'&amp;': '&',
 	'&lt;': '<',
 	'&gt;': '>',
@@ -200,16 +222,16 @@ const unescapeHTMLElements = (str) => {
 	'&#39;': "'",
 	'&#x2F;': '/',
 	'&nbsp;': ' ',
-  };
+	};
 
-  tags.forEach(tag => {
+	tags.forEach(tag => {
 	entities[`&lt;${tag}&gt;`] = `<${tag}>`;
 	entities[`&lt;/${tag}&gt;`] = `</${tag}>`;
-  });
+	});
 
-  const regex = new RegExp(Object.keys(entities).join('|'), 'g');
-  
-  return str.replace(regex, match => entities[match]);
+	const regex = new RegExp(Object.keys(entities).join('|'), 'g');
+	
+	return str.replace(regex, match => entities[match]);
 };
 
 /**
