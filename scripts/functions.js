@@ -155,7 +155,7 @@ const convertDates = (obj, format) => {
 		if (obj.hasOwnProperty(key)) {
 			if (typeof obj[key] === 'object') {
 				obj[key] = convertDates(obj[key], format);
-			} 
+			}
 
 			// If the property is 'start' or 'date', format the timestamp.
 			else if (key === 'start' || key === 'end') {
@@ -166,6 +166,18 @@ const convertDates = (obj, format) => {
 
 	return obj;
 };
+
+/**
+ * Retrieves the value of a specified query parameter from the current URL.
+ * 
+ * @param {string} param - The name of the query parameter to retrieve.
+ * @param {string} [defaultValue=''] - The default value to return if the parameter is not found.
+ * @returns {string} The value of the query parameter, or the default value if not found.
+ */
+function getQueryParam(param, defaultValue = '') {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param) || defaultValue;
+}
 
 /**
  * Unescapes common HTML typographic elements and entities in a string.

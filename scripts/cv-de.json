@@ -1,0 +1,107 @@
+{
+  "name": {
+    "full": "Verrückter McAlbernhose"
+  },
+  "tagLine": "Qualitätsservice mit einem Lachen",
+  "blurb": "Anpassungsfähiger Spaßvogel mit einer verrückten Mischung aus Kundenservice- und Archivverwaltungsfähigkeiten. Großartig darin, Dinge reibungslos laufen zu lassen und Ziele zu erreichen, während er Witze reißt. Fließend in Englisch und Französisch, mit einem Talent, Menschen zum Lächeln zu bringen.",
+  "contact": {
+    "email": "mcalbernhose@gmail.com",
+    "phone": "+69 555-STELL-MICH-EIN",
+    "instagram": "alberne_kunst"
+  },
+  "jobs": [
+    {
+      "title": "Chefbeauftragter für Gästezufriedenheit",
+      "company": "Kicher-Herberge",
+      "start": 1612137600,
+      "end": "Gegenwart",
+      "tasks": [
+        "Verbreite Freude und stelle sicher, dass Gäste einen lach-tastischen Aufenthalt haben.",
+        "Erledigte Check-ins und brachte Gäste zum Kichern.",
+        "Verwaltete Reservierungen während des Jonglierens mit Pointen.",
+        "Hielt Gästebereiche blitzsauber mit einer Prise Humor."
+      ]
+    },
+    {
+      "title": "Kundenlach-Koordinator",
+      "company": "LachBox Dienstleistungen GmbH",
+      "start": 1527811200,
+      "end": 1664582400,
+      "tasks": [
+        "Unterstützte Werbetreibende auf einer führenden Social-Media-Plattform und brachte sie zum Lachen.",
+        "Fungierte als Vermittler zwischen Unternehmen und Kunden, löste Probleme mit einem Lächeln.",
+        "Wurde für erstklassigen Kundenservice und Team-Heiterkeit anerkannt."
+      ]
+    },
+    {
+      "title": "Digitaler Kritzel-Dynamo",
+      "company": "Selbstständig",
+      "start": 1393632000,
+      "end": 1527811200,
+      "tasks": [
+        "Baute eine Instagram-Folgschaft von über 7.000 durch skurrile digitale Kunstwerke auf.",
+        "Erfüllte verrückte Anfragen und Aufträge.",
+        "Zeigte hervorragendes Kundenengagement und Projekt-Narren-Fähigkeiten."
+      ]
+    },
+    {
+      "title": "Bürozauberer der Verspieltheit",
+      "company": "Tägliche Schmunzel-Nachrichten",
+      "start": 1356998400,
+      "end": 1393632000,
+      "tasks": [
+        "Managte Büro-Streiche in einer geschäftigen Nachrichtenredaktion.",
+        "Arbeitete mit Buchhaltungs-, Design-, Marketing-, Konferenz- und Redaktionsteams zusammen und verbreitete Heiterkeit.",
+        "Bot genaue und amüsante Transkriptionsdienste an."
+      ]
+    },
+    {
+      "title": "Temporärer Kicher-Sekretär",
+      "company": "Lach-Unterstützungsdienste",
+      "start": 1293840000,
+      "end": 1356998400,
+      "tasks": [
+        "Unterstützte verschiedene Unternehmen bei einer Vielzahl von betrieblichen Aufgaben und Witzen.",
+        "Erledigte administrative Pflichten mit einer humorvollen Note."
+      ]
+    },
+    {
+      "title": "Kundensupport-Komiker",
+      "company": "SpaßKnochen Lernen",
+      "start": 1262304000,
+      "end": 1293840000,
+      "tasks": [
+        "Leitete Bildungsverkäufe und unterstützte Sprachlernende mit Wortspielen und Wortspielereien."
+      ]
+    },
+    {
+      "title": "Mode-Spaßvogel",
+      "company": "Kicher Chic, Lachende Fäden Gruppe",
+      "start": 1230768000,
+      "end": 1262304000,
+      "tasks": [
+        "Managte Verkäufe und bot stilvolle Kundenbetreuung mit einem Lächeln.",
+        "Erreichte Verkaufsziele und unterstützte Kunden bei ihren Modeentscheidungen mit einer humorvollen Note."
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Englisch",
+      "fluency": "Muttersprache"
+    },
+    {
+      "language": "Sprache der Liebe",
+      "fluency": "Meister"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universität für Spaß und Spiele",
+      "start": 1167609600,
+      "end": 1262304000,
+      "subject": "Humorstudien und Archivwitze",
+      "thesis": "Lachen durch die Archive: Eine Studie über historischen Humor."
+    }
+  ]
+}

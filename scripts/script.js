@@ -2,13 +2,14 @@ console.log('Use this for generating PDFs: https://www.npmjs.com/package/jspdf')
 
 const loadCV = async () => {
 	try {
-		const cv = formatJSON(await fetchData('scripts/cv.json'));
-		const template = await fetchData('scripts/template.html');
+		const cv = formatJSON(await fetchData('scripts/cv-' + getQueryParam('lang', 'en') + '.json'));
+		let template = await fetchData('scripts/template.html');
 
 		let pages = [];
 		let pageKey = {value: 0}; // We use an object, so that it can be passed by reference in the processJobs() function.
 
 		addPage(pageKey, pages, template);
+
 		let block = pages[pageKey.value].querySelector('main'); // can not be passed by reference to addPage() due to needing to be totally replaced. SHOULD ALSO DO FOR HEADER, FOOTER, SIDEBAR ETC.
 
 		let sections = Array.from(block.querySelectorAll('section'));
@@ -98,3 +99,41 @@ function waitForPaint(callback) {
 		requestAnimationFrame(callback);
 	});
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	// Function to get query parameter by name
+	function getQueryParam(name) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(name);
+	}
+
+	// Function to sanitize input
+	function sanitizeInput(input) {
+		// Create an element to use browser's built-in functionality
+		const tempElement = document.createElement('div');
+		tempElement.textContent = input;
+		return tempElement.textContent; // Use textContent to get the sanitized text
+	}
+
+	// Function to get and sanitize query parameters
+	function getSanitizedQueryParam(name) {
+		const value = getQueryParam(name);
+		return value ? sanitizeInput(value) : null;
+	}
+
+	// Get and sanitize query parameters
+	const params = ['type', 'lang', 'format'];
+	const sanitizedParams = params.reduce((acc, param) => {
+		const value = getSanitizedQueryParam(param);
+		if (value) {
+			acc[param] = value;
+		}
+
+		return acc;
+	}, {});
+
+	// Add sanitized parameters as classes to the body element
+	Object.values(sanitizedParams).forEach(value => {
+		document.body.classList.add(value);
+	});
+});
