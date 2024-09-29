@@ -112,6 +112,46 @@ function convertTime(input, format) {
 }
 
 /**
+ * Normalizes a multi-language object to a single language.
+ *
+ * Traverses a complex object structure and replaces multi-language entries 
+ * with a single language version, prioritizing the specified primary language.
+ *
+ * @param {Object} obj - The object to be normalized.
+ * @param {string} [primaryLang='en_US'] - The primary language to normalize to.
+ *
+ * @returns {Object} A new object with language-specific entries replaced.
+ *
+ * @throws {Error} If the primary language is not supported.
+ */
+const normalizeLanguage = (obj, primaryLang = 'en_US') => {
+
+	if (!languages.includes(primaryLang)) {
+		throw new Error(`Primary language '${primaryLang}' is not in the list of supported languages.`);
+	}
+
+	const processValue = (value) => {
+		if (Array.isArray(value)) {
+			return value.map(item => processValue(item));
+		} else if (typeof value === 'object' && value !== null) {
+			const langKeys = Object.keys(value).filter(key => languages.includes(key));
+			if (langKeys.length > 0) {
+				return value[primaryLang] || value[langKeys[0]] || null;
+			} else {
+				const newObj = {};
+				for (const key in value) {
+					newObj[key] = processValue(value[key]);
+				}
+				return newObj;
+			}
+		}
+		return value;
+	};
+
+	return processValue(obj);
+};
+
+/**
  * Recursively adds isFirst and isLast properties to the first and last items of arrays within an object,
  * and converts date fields in the object to a specific format.
  * 
@@ -122,6 +162,7 @@ function convertTime(input, format) {
 const formatJSON = (obj, format = 'year') => {
 	obj = addFirstLastProperties(obj);
 	obj = convertDates(obj, format);
+	obj = normalizeLanguage(obj, getQueryParam('lang', 'en'));
 
 	return obj;
 };
@@ -291,3 +332,5 @@ const stripFirstHeading = (htmlString) => {
 	// Return the modified HTML as a string
 	return tempDiv.innerHTML;
 };
+
+const languages = ['en_US', 'de_DE', 'fr_FR', 'es_ES', 'it_IT', 'ja_JP', 'zh_CN', 'ru_RU'];

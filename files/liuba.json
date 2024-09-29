@@ -1,0 +1,295 @@
+{
+	"name": {
+		"full": "Liubov Kurilova"
+	},
+	"tagLine": {
+		"en_US": "Delivering quality service with a smile",
+		"de_DE": "Qualitätsservice mit einem Lächeln anbieten"
+	},
+	"blurb": {
+		"en_US": "Motivated employee with experience in customer service, administrative operations, hospitality and sales open to opportunities in Berlin or remote positions. Bilingual in English and Russian.",
+		"de_DE": "Motivierter Mitarbeiterin mit Erfahrung im Kundenservice, in Verwaltungsaufgaben, Gastgewerbe und Verkauf. Offen für Möglichkeiten in Berlin oder Remote-Arbeit. Zweisprachig in Englisch und Russisch."
+	},
+	"contact": {
+		"email": "liuba.eremenko@gmail.com",
+		"phone": "+49 1522 464 0561",
+		"instagram": "kurilove_art",
+		"linkedin": "liubov-kurilova"
+	},
+	"jobs": [
+		{
+			"title": {
+				"en_US": "Front Office Specialist",
+				"de_DE": "Front Office Spezialist"
+			},
+			"company": "Moxy Hotels Berlin",
+			"start": 1612137600,
+			"end": "Gegenwart",
+			"tasks": [
+				{
+					"en_US": "Ensured a warm and inviting guest experience through friendly greetings and attentive service, effectively communicating in fluent English, native Russian, and basic German.",
+					"de_DE": "Sorgte für eine warme und einladende Gästeerfahrung durch freundliche Begrüßungen und aufmerksamen Service, kommunizierte effektiv auf fließendem Englisch, muttersprachlichem Russisch und einfachem Deutsch."
+				},
+				{
+					"en_US": "Upheld high standards of customer service, resolving guest inquiries and issues promptly.",
+					"de_DE": "Hielt hohe Standards im Kundenservice ein und löste Gästeanfragen und -probleme schnell."
+				},
+				{
+					"en_US": "Orchestrated seamless food and beverage service, at the bar and in the kitchen.",
+					"de_DE": "Reibungsloser Ablauf von Speisen und Getränken an der Bar und in der Küche organisiert."
+				},
+				{
+					"en_US": "Handled transactions efficiently as a cashier, ensuring a smooth payment experience for guests.",
+					"de_DE": "Wickelte Transaktionen effizient als Kassierer ab und sorgte für ein reibungsloses Zahlungserlebnis für die Gäste."
+				},
+				{
+					"en_US": "Proactively maintained cleanliness, organisation and decoration of guest areas, contributing to a welcoming environment.",
+					"de_DE": "Hielt proaktiv Sauberkeit, Organisation und Dekoration der Gästebereiche aufrecht und trug zu einer einladenden Umgebung bei."
+				},
+				{
+					"en_US": "Managed guest check-ins and reservations efficiently.",
+					"de_DE": "Verwaltete Gästeregistrierungen und Reservierungen effizient."
+				},
+				{
+					"en_US": "Organized documents and disposed of outdated materials, ensuring confidentiality and compliance.",
+					"de_DE": "Organisierte Dokumente und entsorgte veraltete Materialien, sicherstellte Vertraulichkeit und Einhaltung."
+				},
+				{
+					"en_US": "Handled administrative duties including assigning parking spots, requesting restocking of supplies, and organizing common areas.",
+					"de_DE": "Erledigte administrative Aufgaben, darunter Zuweisung von Parkplätzen, Nachbestellung von Vorräten und Organisation von Gemeinschaftsbereichen."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Client Services Representative",
+				"de_DE": "Kundendienstmitarbeiter"
+			},
+			"company": "Concentrix Global Services GmbH",
+			"start": 1527811200,
+			"end": 1664582400,
+			"tasks": [
+				{
+					"en_US": "Supported advertisers on a leading social media platform.",
+					"de_DE": "Unterstützte Werbetreibende auf einer führenden Social-Media-Plattform."
+				},
+				{
+					"en_US": "Acted as a key liaison between the company and clients, ensuring prompt issue resolution.",
+					"de_DE": "Agierte als zentrale Verbindung zwischen dem Unternehmen und den Kunden und sorgte für eine schnelle Problemlösung."
+				},
+				{
+					"en_US": "Recognised for exceptional customer service and team success.",
+					"de_DE": "Für herausragenden Kundenservice und Teamerfolg anerkannt."
+				},
+				{
+					"en_US": "Consistently exceeded targets, earned praise for excellent customer service, and significantly contributed to team success.",
+					"de_DE": "Überschritt ständig die Ziele, erhielt Lob für exzellenten Kundenservice und trug erheblich zum Teamerfolg bei."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Digital Artist",
+				"de_DE": "Digitaler Künstler"
+			},
+			"company": {
+				"en_US": "Self employed",
+				"de_DE": "Selbstständig"
+			},
+			"start": 1393632000,
+			"end": 1527811200,
+			"tasks": [
+				{
+					"en_US": "Cultivated an Instagram following of 7,000+ through original digital artwork.",
+					"de_DE": "Erarbeitete sich eine Instagram-Gefolgschaft von über 7.000 durch originale digitale Kunstwerke."
+				},
+				{
+					"en_US": "Fulfilled follower requests and commissions.",
+					"de_DE": "Erfüllte Follower-Anfragen und Aufträge."
+				},
+				{
+					"en_US": "Demonstrated strong customer engagement and project management skills.",
+					"de_DE": "Zeigte starke Kundenbindung und Projektmanagementfähigkeiten."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Administrative Assistant",
+				"de_DE": "Verwaltungsassistent"
+			},
+			"company": "AO Business News Media",
+			"start": 1356998400,
+			"end": 1393632000,
+			"tasks": [
+				 {
+					"en_US": "Managed office operations in a fast-paced newsroom.",
+					"de_DE": "Leitete Büroabläufe in einer schnelllebigen Nachrichtenredaktion."
+				},
+				{
+					"en_US": "Collaborated with accounting, design, marketing, conferences, and editorial departments.",
+					"de_DE": "Arbeitete mit den Abteilungen Buchhaltung, Design, Marketing, Konferenzen und Redaktion zusammen."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Temporary Secretary",
+				"de_DE": "Aushilfssekretärin"
+			},
+			"company": "Coleman Services",
+			"start": 1293840000,
+			"end": 1356998400,
+			"tasks": [
+				{
+					"en_US": "Supported various companies with operational and project tasks.",
+					"de_DE": "Unterstützte verschiedene Unternehmen bei operativen und Projektaufgaben."
+				},
+				{
+					"en_US": "Managed administrative duties for smooth business operations.",
+					"de_DE": "Erledigte administrative Aufgaben für reibungslose Geschäftsabläufe."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Customer Support Professional",
+				"de_DE": "Kundensupport-Experte"
+			},
+			"company": "BKC-International House",
+			"start": 1262304000,
+			"end": 1293840000,
+			"tasks": [
+				{
+					"en_US": "Led educational sales and supported language learners.",
+					"de_DE": "Führte Bildungsverkauf und unterstützte Sprachlerner."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Sales Professional",
+				"de_DE": "Verkaufsexperte"
+			},
+			"company": "Mexx, BNS Group",
+			"start": 1230768000,
+			"end": 1262304000,
+			"tasks": [
+				{
+					"en_US": "Managed sales, provided customer service, and recommended products.",
+					"de_DE": "Leitete den Verkauf, bot Kundendienst an und empfahl Produkte."
+				},
+				{
+					"en_US": "Achieved sales targets and assisted customers with fashion choices.",
+					"de_DE": "Erreichte Verkaufsziele und half Kunden bei der Auswahl von Mode."
+				}
+			]
+		},
+		{
+			"title": {
+				"en_US": "Assistant Archivist",
+				"de_DE": "Archivassistent"
+			},
+			"company": {
+				"en_US": "Russian State Archive of Ancient Acts, OPJS Telegraph",
+				"de_DE": "Russisches Staatsarchiv für alte Akten, OPJS Telegraph"
+			},
+			"start": 1230768000,
+			"end": 1262304000,
+			"tasks": [
+				{
+					"en_US": "Managed, digitized, and organized corporate and state archive documents.",
+					"de_DE": "Verwaltete, digitalisierte und organisierte Unternehmens- und Staatsarchivdokumente."
+				}
+			]
+		}
+	],
+	"languages": [
+		{
+			"language": {
+				"en_US": "Russian",
+				"de_DE": "Russisch"
+			},
+			"fluency": {
+				"en_US": "native",
+				"de_DE": "Muttersprache"
+			}
+		},
+		{
+			"language": {
+				"en_US": "English",
+				"de_DE": "Englisch"
+			},
+			"fluency": {
+				"en_US": "full-professional",
+				"de_DE": "Beruflich fließend"
+			}
+		},
+		{
+			"language": {
+				"en_US": "German",
+				"de_DE": "Deutsch"
+			},
+			"fluency": {
+				"en_US": "basic",
+				"de_DE": "Grundkenntnisse"
+			}
+		}
+	],
+	"education": [
+		{
+			"institution": {
+				"en_US": "Russian State University for the Humanities",
+				"de_DE": "Russische Staatliche Geisteswissenschaftliche Universität"
+			},
+			"start": 1167609600,
+			"end": 1262304000,
+			"subject": {
+				"en_US": "Documentation and Archival Studies",
+				"de_DE": "Dokumentations- und Archivstudien"
+			},
+			"thesis": {
+				"en_US": "International Business and Technical Archives.",
+				"de_DE": "Internationale Geschäfts- und Technikarchive."
+			}
+		}
+	],
+	"strings": {
+		"skills": {
+			"en_US": "Skills",
+			"de_DE": "Fähigkeiten"
+		},
+		"contact": {
+			"en_US": "Contact",
+			"de_DE": "Kontakt"
+		},
+		"email": {
+			"en_US": "Email",
+			"de_DE": "Email"
+		},
+		"phone": {
+			"en_US": "Tel",
+			"de_DE": "Tel"
+		},
+		"instagram": {
+			"en_US": "Instagram",
+			"de_DE": "Instagram"
+		},
+		"experience": {
+			"en_US": "Experience",
+			"de_DE": "Erfahrung"
+		},
+		"thesis": {
+			"en_US": "Thesis",
+			"de_DE": "Abschlussarbeit"
+		},
+		"language-skills": {
+			"en_US": "Language Skills",
+			"de_DE": "Sprachkenntnisse"
+		},
+		"education": {
+			"en_US": "Education",
+			"de_DE": "Bildung"
+		}
+	}
+}

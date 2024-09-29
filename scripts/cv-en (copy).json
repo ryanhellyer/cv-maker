@@ -1,0 +1,107 @@
+{
+  "name": {
+    "full": "Loony McSillypants"
+  },
+  "tagLine": "Delivering quality service with a laugh",
+  "blurb": "Adaptable goofball with a zany mix of customer service and archival management skills. Great at making things run smoothly and hitting targets while cracking jokes. Fluent in English and French, with a knack for making people smile.",
+  "contact": {
+    "email": "mcsillypants@gmail.com",
+    "phone": "+69 555-HIRE-ME",
+    "instagram": "silly_art"
+  },
+  "jobs": [
+    {
+      "title": "Chief Guest Happiness Officer",
+      "company": "Giggle Inn",
+      "start": 1612137600,
+      "end": "present",
+      "tasks": [
+        "Spread cheer and ensure guests have a laugh-tastic stay.",
+        "Handled check-ins, making guests giggle.",
+        "Managed reservations while juggling punchlines.",
+        "Kept guest areas spick-and-span with a dose of humour."
+      ]
+    },
+    {
+      "title": "Client Chuckles Coordinator",
+      "company": "LaughBox Services Ltd.",
+      "start": 1527811200,
+      "end": 1664582400,
+      "tasks": [
+        "Supported advertisers on a leading social media platform, making them laugh.",
+        "Acted as a go-between for the company and clients, resolving issues with a smile.",
+        "Recognised for top-notch customer service and team mirth."
+      ]
+    },
+    {
+      "title": "Digital Doodle Dynamo",
+      "company": "Self-employed",
+      "start": 1393632000,
+      "end": 1527811200,
+      "tasks": [
+        "Grew an Instagram following of 7,000+ through whimsical digital artwork.",
+        "Fulfilled zany requests and commissions.",
+        "Showed off superb customer engagement and project jester skills."
+      ]
+    },
+    {
+      "title": "Office Wizard of Whimsy",
+      "company": "Daily Chuckle News",
+      "start": 1356998400,
+      "end": 1393632000,
+      "tasks": [
+        "Managed office hijinks in a bustling newsroom.",
+        "Worked with accounting, design, marketing, conferences, and editorial teams, spreading cheer.",
+        "Provided accurate and amusing transcription services."
+      ]
+    },
+    {
+      "title": "Temporary Giggle Secretary",
+      "company": "Laugh Support Services",
+      "start": 1293840000,
+      "end": 1356998400,
+      "tasks": [
+        "Supported various companies with a variety of operational tasks and jokes.",
+        "Managed administrative duties with a humorous touch."
+      ]
+    },
+    {
+      "title": "Customer Support Comedian",
+      "company": "FunnyBone Learning",
+      "start": 1262304000,
+      "end": 1293840000,
+      "tasks": [
+        "Led educational sales and supported language learners with puns and wordplay."
+      ]
+    },
+    {
+      "title": "Fashion Funnyman",
+      "company": "Chuckle Chic, Laughing Threads Group",
+      "start": 1230768000,
+      "end": 1262304000,
+      "tasks": [
+        "Managed sales and provided stylish customer service with a smile.",
+        "Hit sales targets and assisted customers with their fashion choices, adding a humorous twist."
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "native"
+    },
+    {
+      "language": "Language of Love",
+      "fluency": "master"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Fun and Games",
+      "start": 1167609600,
+      "end": 1262304000,
+      "subject": "Humour Studies and Archival Jokes",
+      "thesis": "Laughing Through the Archives: A Study of Historical Humour."
+    }
+  ]
+}

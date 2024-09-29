@@ -1,28 +1,30 @@
+<!-- I THINK THERE WAS SOMETHING ABOUT NEEDING A STREET ADDRESS FOR ATS COMPLIANCY WASN'T THERE? -->
+
 <header>
 	<h1>{{name.full}}</h1>
 	<p>{{tagLine}}</p>
 </header>
 
 <aside>
-	<h2>Skills</h2>
+	<h2>{{strings.skills}}</h2>
 	<p>{{blurb}}</p>
 
 	<hr>
 
-	<h2>Contact</h2>
+	<h2>{{strings.contact}}</h2>
 	<p>
-		Email: <a href="mailto:{{contact.email}}">{{contact.email}}</a>
+		{{strings.email}}: <a href="mailto:{{contact.email}}">{{contact.email}}</a>
 		<br>
-		Tel: <a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+		{{strings.phone}}: <a href="tel:{{contact.phone}}">{{contact.phone}}</a>
 		<br>
-		Instagram: <a href="https://instagram.com/{{contact.instagram}}/">@{{contact.instagram}}</a>
+		{{strings.instagram}}: <a href="https://instagram.com/{{contact.instagram}}/">@{{contact.instagram}}</a>
 	</p>
 
 </aside>
 
 <main>
 	<section>
-		<h2>Experience</h2>
+		<h2>{{strings.experience}}</h2>
 		<ol class="jobs">
 			{{#jobs}}
 			<li>
@@ -37,7 +39,7 @@
 		</ol>
 	</section>
 	<section>
-		<h2>Language Skills</h2>
+		<h2>{{strings.languageSkills}}</h2>
 		<p>
 			{{#languages}}
 			{{language}}: {{fluency}}
@@ -46,14 +48,14 @@
 		</p>
 	</section>
 	<section>
-		<h2>Education</h2>
+		<h2>{{strings.education}}</h2>
 		{{#education}}
 			<p>
 				<strong>{{institution}} | {{start}} &mdash; {{end}}</strong>
 				<br>
 				{{subject}}
 				<br>
-				Thesis: {{thesis}}.
+				{{strings.thesis}}: {{thesis}}.
 			</p>
 		{{/education}}
 	</section>
