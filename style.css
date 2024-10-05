@@ -197,9 +197,9 @@ aside {
 }
 
 main {
-	padding: 1cm;
+	padding: 1.5cm 1cm 1cm;
 	width: 11cm;
-	height: 21.7cm;
+	height: 21.2cm;
 	background: #fff;
 
 	body.ats & {
@@ -209,7 +209,7 @@ main {
 
 	> :first-child {
 		> :first-child {
-			margin-top: 0.5cm;
+			margin-top: 0cm;
 		}
 	}
 }
@@ -251,11 +251,12 @@ strong {
 }
 
 ul {
-	margin: 0 0 1cm;
+	margin: 0 0 0.75cm;
 }
 
 ul li {
-	margin: 0.15cm 0 0 0.5cm;
+	/* OLD */margin: 0.15cm 0 0 0.5cm;
+	margin: 0.05cm 0 0 0.5cm;
 	list-style: none;
 }
 
@@ -311,7 +312,7 @@ footer {
 		border: none;
 	}
 
-	button {
+	#whatever {
 		display: none;
 	}
 }

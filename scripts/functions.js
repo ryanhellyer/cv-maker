@@ -16,7 +16,7 @@ const processJobs = async (cv, section, block, initialHTML, pages, pageKey) => {
 		removedJobs.unshift(cv.jobs.pop()); // Remove the last job and add it to the front of the removedJobs array.
 		block.innerHTML = initialHTML; // Reset to initial content before re-rendering.
 		await renderBlock(cv, section, block);
-		await new Promise(resolve => setTimeout(resolve, 300));
+		await new Promise(resolve => setTimeout(resolve, 50));
 	}
 
 	cv.jobs = removedJobs;
@@ -156,12 +156,13 @@ const normalizeLanguage = (obj, primaryLang = 'en_US') => {
  * and converts date fields in the object to a specific format.
  * 
  * @param {Object} obj - The object to process.
- * @param {string} format - The date format to convert to.
+ * @param {string} dateFormat - The date format to convert to.
  * @returns {object} - The formatted JSON blob.
  */
-const formatJSON = (obj, format = 'year') => {
+const formatJSON = (obj, dateFormat = 'year') => {
 	obj = addFirstLastProperties(obj);
-	obj = convertDates(obj, format);
+	obj = convertDates(obj, dateFormat);
+	obj = convertJobTypes(obj, [getQueryParam('job-type')]);
 	obj = normalizeLanguage(obj, getQueryParam('lang', 'en'));
 
 	return obj;
@@ -205,13 +206,14 @@ const addFirstLastProperties = (obj) => {
 /**
  * Recursively converts date fields in an object to a specific format.
  * @param {Object} obj - The object containing date fields to be converted.
+ * @param {string} dateFormat - The date format to use.
  * @returns {object} - The JSON blob with formatted time strings.
  */
-const convertDates = (obj, format) => {
+const convertDates = (obj, dateFormat) => {
 	for (const key in obj) {
 		if (obj.hasOwnProperty(key)) {
 			if (typeof obj[key] === 'object') {
-				obj[key] = convertDates(obj[key], format);
+				obj[key] = convertDates(obj[key], dateFormat);
 			}
 
 			// If the property is 'start' or 'date', format the timestamp.
@@ -221,11 +223,43 @@ const convertDates = (obj, format) => {
 				if ('ats' === getQueryParam('type', '')) {
 					obj[key] = convertTime(obj[key], 'YYYY-mm-dd');
 				} else {
-					obj[key] = convertTime(obj[key], format);
+					obj[key] = convertTime(obj[key], dateFormat);
 				}
 			}
 		}
 	}
+
+	return obj;
+};
+
+/**
+ * Recursively converts job types in an object to a specific format and filters by job type.
+ * @param {Object} obj - The object containing job data to be converted.
+ * @param {string[]} allowedJobTypes - Array of job types to include in the result.
+ * @returns {Object} - The transformed object with formatted and filtered job data.
+ */
+const convertJobTypes = (obj, allowedJobTypes = '') => {
+  // Strip out unwanted jobs.
+	obj.jobs.forEach(job => {
+	  console.log(job.tasks.length);
+	  job.tasks = job.tasks.filter(task => {
+	    // Check if any of the task's job types are in the allowedJobTypes
+	    return task.jobType.some(type => allowedJobTypes.includes(type));
+	  });
+	  console.log(job.tasks.length);
+	  console.log('-----');
+	});
+
+	// Convert to text only.
+	obj.jobs.forEach(job => {
+		job.tasks = job.tasks.map(task => {
+			const { text } = task;
+			return {
+				en_US: text.en_US,
+				de_DE: text.de_DE
+			};
+		});
+	});
 
 	return obj;
 };

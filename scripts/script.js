@@ -101,53 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-/**
- * Adding buttons and setting selections.
- */
-
-const button = document.createElement('button');
-button.id = 'generate-pdf';
-button.textContent = 'Generate PDF';
-document.body.appendChild(button);
-
-const button2 = document.createElement('button');
-button2.id = 'save-pdf';
-button2.textContent = 'Save PDF';
-document.body.appendChild(button2);
-
-document.getElementById('save-pdf').addEventListener('click', () => {
-	window.print();
-});
-
-document.getElementById('generate-pdf').addEventListener('click', () => {
-
-    document.body.classList.add('printing');
-
-	waitForPaint(() => {
-    	const element = document.body;
-		const opt = {
-			margin: [0, 0, 0, 0], // top, right, bottom, left in mm
-			filename: 'document.pdf',
-			image: { type: 'jpeg', quality: 0.98 },
-			html2canvas: { scale: 2 },
-			jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-		};
-
-		html2pdf().set(opt).from(element).save();
-	});
-//    document.body.classList.remove('printing');
-});
-
-function waitForPaint(callback) {
-	requestAnimationFrame(() => {
-		requestAnimationFrame(callback);
-	});
-}
 
 
-/**
- * File selector.
- */
+
+// Get the container div
+const container = document.getElementById('whatever');
+
+// File selector
 const selectBox = document.createElement('select');
 selectBox.id = 'file-selector';
 const options = ['cv', 'liuba'];
@@ -165,11 +125,9 @@ selectBox.addEventListener('change', (event) => {
     url.searchParams.set('file', selectedFile);
     window.location.href = url.toString();
 });
-document.body.insertBefore(selectBox, document.body.firstChild);
+container.appendChild(selectBox);
 
-/**
- * Language selector.
- */
+// Language selector
 const createLanguageSelector = () => {
     const languages = ['en_US', 'de_DE', 'fr_FR', 'es_ES', 'it_IT', 'ja_JP', 'zh_CN', 'ru_RU'];
     
@@ -179,13 +137,11 @@ const createLanguageSelector = () => {
     languages.forEach(lang => {
         const optionElement = document.createElement('option');
         optionElement.value = lang;
-        // Create a more readable label for each language
         const label = lang.split('_')[0].toLowerCase();
         optionElement.textContent = label.charAt(0).toUpperCase() + label.slice(1);
         selectBox.appendChild(optionElement);
     });
     
-    // Get the current language from URL params or default to 'en_US'
     const currentLang = new URLSearchParams(window.location.search).get('lang') || 'en_US';
     selectBox.value = currentLang;
     
@@ -196,14 +152,11 @@ const createLanguageSelector = () => {
         window.location.href = url.toString();
     });
     
-    // Insert the select box at the beginning of the body
-    document.body.insertBefore(selectBox, document.body.firstChild);
+    container.appendChild(selectBox);
 };
 createLanguageSelector();
 
-/**
- * CV Type selector.
- */
+// CV Type selector
 const createCVTypeSelector = () => {
     const types = [
         { value: 'ats', label: 'ATS' },
@@ -219,8 +172,7 @@ const createCVTypeSelector = () => {
         optionElement.textContent = type.label;
         selectBox.appendChild(optionElement);
     });
-    
-    // Get the current CV type from URL params or default to 'normal'
+
     const currentType = new URLSearchParams(window.location.search).get('type') || 'normal';
     selectBox.value = currentType;
     
@@ -231,17 +183,93 @@ const createCVTypeSelector = () => {
         window.location.href = url.toString();
     });
     
-    // Create a label for the select box
     const label = document.createElement('label');
     label.htmlFor = 'cv-type-selector';
     label.textContent = 'CV Type: ';
     
-    // Create a container for the label and select box
-    const container = document.createElement('div');
-    container.appendChild(label);
-    container.appendChild(selectBox);
+    const wrapper = document.createElement('div');
+    wrapper.appendChild(label);
+    wrapper.appendChild(selectBox);
     
-    // Insert the container at the beginning of the body
-    document.body.insertBefore(container, document.body.firstChild);
+    container.appendChild(wrapper);
 };
 createCVTypeSelector();
+
+// Job Type selector
+const createJobTypeSelector = () => {
+    const types = [
+        { value: 'office', label: 'Office' },
+        { value: 'non-office', label: 'Non-Office' }
+    ];
+    
+    const selectBox = document.createElement('select');
+    selectBox.id = 'job-type-selector';
+    
+    types.forEach(type => {
+        const optionElement = document.createElement('option');
+        optionElement.value = type.value;
+        optionElement.textContent = type.label;
+        selectBox.appendChild(optionElement);
+    });
+
+    const currentType = new URLSearchParams(window.location.search).get('job-type') || 'office';
+    selectBox.value = currentType;
+    
+    selectBox.addEventListener('change', (event) => {
+        const selectedType = event.target.value;
+        const url = new URL(window.location);
+        url.searchParams.set('job-type', selectedType);
+        window.location.href = url.toString();
+    });
+    
+    const label = document.createElement('label');
+    label.htmlFor = 'job-type-selector';
+    label.textContent = 'Job Type: ';
+    
+    const wrapper = document.createElement('div');
+    wrapper.appendChild(label);
+    wrapper.appendChild(selectBox);
+    
+    container.appendChild(wrapper);
+};
+createJobTypeSelector();
+
+// Generate PDF button
+const generateButton = document.createElement('button');
+generateButton.id = 'generate-pdf';
+generateButton.textContent = 'Generate PDF';
+container.appendChild(generateButton);
+
+// Save PDF button
+const saveButton = document.createElement('button');
+saveButton.id = 'save-pdf';
+saveButton.textContent = 'Save PDF';
+container.appendChild(saveButton);
+
+// Event listeners for buttons
+document.getElementById('save-pdf').addEventListener('click', () => {
+    window.print();
+});
+
+document.getElementById('generate-pdf').addEventListener('click', () => {
+    document.body.classList.add('printing');
+
+    waitForPaint(() => {
+        const element = document.body;
+        const opt = {
+            margin: [0, 0, 0, 0],
+            filename: 'document.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(element).save();
+    });
+});
+
+function waitForPaint(callback) {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(callback);
+    });
+}

@@ -27,36 +27,60 @@
 			"end": "Gegenwart",
 			"tasks": [
 				{
-					"en_US": "Ensured a warm and inviting guest experience through friendly greetings and attentive service, effectively communicating in fluent English, native Russian, and basic German.",
-					"de_DE": "Sorgte für eine warme und einladende Gästeerfahrung durch freundliche Begrüßungen und aufmerksamen Service, kommunizierte effektiv auf fließendem Englisch, muttersprachlichem Russisch und einfachem Deutsch."
+					"text": {
+						"en_US": "Ensured a warm and inviting guest experience through friendly greetings and attentive service, effectively communicating in fluent English, native Russian, and basic German.",
+						"de_DE": "Sorgte für eine warme und einladende Gästeerfahrung durch freundliche Begrüßungen und aufmerksamen Service, kommunizierte effektiv auf fließendem Englisch, muttersprachlichem Russisch und einfachem Deutsch."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Upheld high standards of customer service, resolving guest inquiries and issues promptly.",
-					"de_DE": "Hielt hohe Standards im Kundenservice ein und löste Gästeanfragen und -probleme schnell."
+					"text": {
+						"en_US": "Upheld high standards of customer service, resolving guest inquiries and issues promptly.",
+						"de_DE": "Hielt hohe Standards im Kundenservice ein und löste Gästeanfragen und -probleme schnell."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Orchestrated seamless food and beverage service, at the bar and in the kitchen.",
-					"de_DE": "Reibungsloser Ablauf von Speisen und Getränken an der Bar und in der Küche organisiert."
+					"text": {
+						"en_US": "Orchestrated seamless food and beverage service, at the bar and in the kitchen.",
+						"de_DE": "Reibungsloser Ablauf von Speisen und Getränken an der Bar und in der Küche organisiert."
+					},
+					"jobType": ["non-office"]
 				},
 				{
-					"en_US": "Handled transactions efficiently as a cashier, ensuring a smooth payment experience for guests.",
-					"de_DE": "Wickelte Transaktionen effizient als Kassierer ab und sorgte für ein reibungsloses Zahlungserlebnis für die Gäste."
+					"text": {
+						"en_US": "Handled transactions efficiently as a cashier, ensuring a smooth payment experience for guests.",
+						"de_DE": "Wickelte Transaktionen effizient als Kassierer ab und sorgte für ein reibungsloses Zahlungserlebnis für die Gäste."
+					},
+					"jobType": ["non-office"]
 				},
 				{
-					"en_US": "Proactively maintained cleanliness, organisation and decoration of guest areas, contributing to a welcoming environment.",
-					"de_DE": "Hielt proaktiv Sauberkeit, Organisation und Dekoration der Gästebereiche aufrecht und trug zu einer einladenden Umgebung bei."
+					"text": {
+						"en_US": "Proactively maintained cleanliness, organisation and decoration of guest areas, contributing to a welcoming environment.",
+						"de_DE": "Hielt proaktiv Sauberkeit, Organisation und Dekoration der Gästebereiche aufrecht und trug zu einer einladenden Umgebung bei."
+					},
+					"jobType": ["non-office"]
 				},
 				{
-					"en_US": "Managed guest check-ins and reservations efficiently.",
-					"de_DE": "Verwaltete Gästeregistrierungen und Reservierungen effizient."
+					"text": {
+						"en_US": "Managed guest check-ins and reservations efficiently.",
+						"de_DE": "Verwaltete Gästeregistrierungen und Reservierungen effizient."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Organized documents and disposed of outdated materials, ensuring confidentiality and compliance.",
-					"de_DE": "Organisierte Dokumente und entsorgte veraltete Materialien, sicherstellte Vertraulichkeit und Einhaltung."
+					"text": {
+						"en_US": "Organized documents and disposed of outdated materials, ensuring confidentiality and compliance.",
+						"de_DE": "Organisierte Dokumente und entsorgte veraltete Materialien, sicherstellte Vertraulichkeit und Einhaltung."
+					},
+					"jobType": ["office"]
 				},
 				{
-					"en_US": "Handled administrative duties including assigning parking spots, requesting restocking of supplies, and organizing common areas.",
-					"de_DE": "Erledigte administrative Aufgaben, darunter Zuweisung von Parkplätzen, Nachbestellung von Vorräten und Organisation von Gemeinschaftsbereichen."
+					"text": {
+						"en_US": "Handled administrative duties including assigning parking spots, requesting restocking of supplies, and organizing common areas.",
+						"de_DE": "Erledigte administrative Aufgaben, darunter Zuweisung von Parkplätzen, Nachbestellung von Vorräten und Organisation von Gemeinschaftsbereichen."
+					},
+					"jobType": ["office"]
 				}
 			]
 		},
@@ -70,20 +94,32 @@
 			"end": 1664582400,
 			"tasks": [
 				{
-					"en_US": "Supported advertisers on a leading social media platform.",
-					"de_DE": "Unterstützte Werbetreibende auf einer führenden Social-Media-Plattform."
+					"text": {
+						"en_US": "Supported advertisers on a leading social media platform.",
+						"de_DE": "Unterstützte Werbetreibende auf einer führenden Social-Media-Plattform."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Acted as a key liaison between the company and clients, ensuring prompt issue resolution.",
-					"de_DE": "Agierte als zentrale Verbindung zwischen dem Unternehmen und den Kunden und sorgte für eine schnelle Problemlösung."
+					"text": {
+						"en_US": "Acted as a key liaison between the company and clients, ensuring prompt issue resolution.",
+						"de_DE": "Agierte als zentrale Verbindung zwischen dem Unternehmen und den Kunden und sorgte für eine schnelle Problemlösung."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Recognised for exceptional customer service and team success.",
-					"de_DE": "Für herausragenden Kundenservice und Teamerfolg anerkannt."
+					"text": {
+						"en_US": "Recognised for exceptional customer service and team success.",
+						"de_DE": "Für herausragenden Kundenservice und Teamerfolg anerkannt."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Consistently exceeded targets, earned praise for excellent customer service, and significantly contributed to team success.",
-					"de_DE": "Überschritt ständig die Ziele, erhielt Lob für exzellenten Kundenservice und trug erheblich zum Teamerfolg bei."
+					"text": {
+						"en_US": "Consistently exceeded targets, earned praise for excellent customer service, and significantly contributed to team success.",
+						"de_DE": "Überschritt ständig die Ziele, erhielt Lob für exzellenten Kundenservice und trug erheblich zum Teamerfolg bei."
+					},
+					"jobType": ["office"]
 				}
 			]
 		},
@@ -100,16 +136,18 @@
 			"end": 1527811200,
 			"tasks": [
 				{
-					"en_US": "Cultivated an Instagram following of 7,000+ through original digital artwork.",
-					"de_DE": "Erarbeitete sich eine Instagram-Gefolgschaft von über 7.000 durch originale digitale Kunstwerke."
+					"text": {
+						"en_US": "Cultivated an Instagram following of 7,000+ through original digital artwork.",
+						"de_DE": "Erarbeitete sich eine Instagram-Gefolgschaft von über 7.000 durch originale digitale Kunstwerke."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Fulfilled follower requests and commissions.",
-					"de_DE": "Erfüllte Follower-Anfragen und Aufträge."
-				},
-				{
-					"en_US": "Demonstrated strong customer engagement and project management skills.",
-					"de_DE": "Zeigte starke Kundenbindung und Projektmanagementfähigkeiten."
+					"text": {
+						"en_US": "Fulfilled follower requests and commissions.",
+						"de_DE": "Erfüllte Follower-Anfragen und Aufträge."
+					},
+					"jobType": ["office", "non-office"]
 				}
 			]
 		},
@@ -123,12 +161,18 @@
 			"end": 1393632000,
 			"tasks": [
 				 {
-					"en_US": "Managed office operations in a fast-paced newsroom.",
-					"de_DE": "Leitete Büroabläufe in einer schnelllebigen Nachrichtenredaktion."
+					"text": {
+						"en_US": "Managed office operations in a fast-paced newsroom.",
+						"de_DE": "Leitete Büroabläufe in einer schnelllebigen Nachrichtenredaktion."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Collaborated with accounting, design, marketing, conferences, and editorial departments.",
-					"de_DE": "Arbeitete mit den Abteilungen Buchhaltung, Design, Marketing, Konferenzen und Redaktion zusammen."
+					"text": {
+						"en_US": "Collaborated with accounting, design, marketing, conferences, and editorial departments.",
+						"de_DE": "Arbeitete mit den Abteilungen Buchhaltung, Design, Marketing, Konferenzen und Redaktion zusammen."
+					},
+					"jobType": ["office", "non-office"]
 				}
 			]
 		},
@@ -142,12 +186,18 @@
 			"end": 1356998400,
 			"tasks": [
 				{
-					"en_US": "Supported various companies with operational and project tasks.",
-					"de_DE": "Unterstützte verschiedene Unternehmen bei operativen und Projektaufgaben."
+					"text": {
+						"en_US": "Supported various companies with operational and project tasks.",
+						"de_DE": "Unterstützte verschiedene Unternehmen bei operativen und Projektaufgaben."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Managed administrative duties for smooth business operations.",
-					"de_DE": "Erledigte administrative Aufgaben für reibungslose Geschäftsabläufe."
+					"text": {
+						"en_US": "Managed administrative duties for smooth business operations.",
+						"de_DE": "Erledigte administrative Aufgaben für reibungslose Geschäftsabläufe."
+					},
+					"jobType": ["office", "non-office"]
 				}
 			]
 		},
@@ -161,8 +211,11 @@
 			"end": 1293840000,
 			"tasks": [
 				{
-					"en_US": "Led educational sales and supported language learners.",
-					"de_DE": "Führte Bildungsverkauf und unterstützte Sprachlerner."
+					"text": {
+						"en_US": "Led educational sales and supported language learners.",
+						"de_DE": "Führte Bildungsverkauf und unterstützte Sprachlerner."
+					},
+					"jobType": ["office", "non-office"]
 				}
 			]
 		},
@@ -176,12 +229,18 @@
 			"end": 1262304000,
 			"tasks": [
 				{
-					"en_US": "Managed sales, provided customer service, and recommended products.",
-					"de_DE": "Leitete den Verkauf, bot Kundendienst an und empfahl Produkte."
+					"text": {
+						"en_US": "Managed sales, provided customer service, and recommended products.",
+						"de_DE": "Leitete den Verkauf, bot Kundendienst an und empfahl Produkte."
+					},
+					"jobType": ["office", "non-office"]
 				},
 				{
-					"en_US": "Achieved sales targets and assisted customers with fashion choices.",
-					"de_DE": "Erreichte Verkaufsziele und half Kunden bei der Auswahl von Mode."
+					"text": {
+						"en_US": "Achieved sales targets and assisted customers with fashion choices.",
+						"de_DE": "Erreichte Verkaufsziele und half Kunden bei der Auswahl von Mode."
+					},
+					"jobType": ["office", "non-office"]
 				}
 			]
 		},
@@ -198,8 +257,11 @@
 			"end": 1262304000,
 			"tasks": [
 				{
-					"en_US": "Managed, digitized, and organized corporate and state archive documents.",
-					"de_DE": "Verwaltete, digitalisierte und organisierte Unternehmens- und Staatsarchivdokumente."
+					"text": {
+						"en_US": "Managed, digitized, and organized corporate and state archive documents.",
+						"de_DE": "Verwaltete, digitalisierte und organisierte Unternehmens- und Staatsarchivdokumente."
+					},
+					"jobType": ["office", "non-office"]
 				}
 			]
 		}
@@ -255,6 +317,10 @@
 		}
 	],
 	"strings": {
+		"languageSkills": {
+			"en_US": "Language Skills",
+			"de_DE": "Sprachkenntnisse"
+		},
 		"skills": {
 			"en_US": "Skills",
 			"de_DE": "Fähigkeiten"
